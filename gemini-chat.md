@@ -1164,7 +1164,12 @@ if __name__ == "__main__":
 
 ```
 
+-------------------------------------
+cab 17062026 1606 more file changes suggested by imbedded-chat
 
+imbedded-chat = vscode chat window
+
+-------------------------------------
 LATEST CODE EXAMPLE FROM GEMINI'
 
 
