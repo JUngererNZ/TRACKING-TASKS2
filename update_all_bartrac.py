@@ -3,6 +3,7 @@ import re
 import sys
 import shutil
 import json
+import argparse
 from pathlib import Path
 from datetime import datetime
 from openpyxl import load_workbook
@@ -78,7 +79,7 @@ def find_oriento_sheet(file_path):
         print(f"⚠️ Could not read sheets from {file_path}: {e}")
         return None
 
-def process_oriento_file(oriento_path, wb, ws, col_index):
+def process_oriento_file(oriento_path, wb, ws, col_index, dry_run=False):
     """Generic ORIENTO processor, with special case for BA2951 (EG20)."""
     oriento_path = Path(oriento_path)
     if not oriento_path.exists():
@@ -183,14 +184,18 @@ def process_oriento_file(oriento_path, wb, ws, col_index):
         for row in matching_rows:
             status_cell = row[col_index["ACTUAL STATUS"] - 1]
             old_value = status_cell.value
-            status_cell.value = status.upper()
-            status_cell.fill = PINK_FILL
+            new_value = status.upper()
+            if dry_run:
+                print(f"DRY-RUN: ORIENTO would update row {row[0].row} (truck {truck_reg}) → '{new_value}' (was: '{old_value}')")
+            else:
+                status_cell.value = new_value
+                status_cell.fill = PINK_FILL
+                print(f"✅ ORIENTO ({sheet_name}): Updated row {row[0].row} (truck {truck_reg}) → '{new_value}' (was: '{old_value}')")
             updated_count += 1
-            print(f"✅ ORIENTO ({sheet_name}): Updated row {row[0].row} (truck {truck_reg}) → '{status.upper()}' (was: '{old_value}')")
 
     print(f"📊 ORIENTO ({sheet_name}) total rows updated: {updated_count}")
 
-def process_fml_file(fml_path, wb, ws, col_index):
+def process_fml_file(fml_path, wb, ws, col_index, dry_run=False):
     print(f"Reading FML file: {fml_path}")
     df_fml_raw = pd.read_excel(fml_path, sheet_name="Sheet1", header=None, dtype=str)
 
@@ -262,14 +267,18 @@ def process_fml_file(fml_path, wb, ws, col_index):
         for row in matching_rows:
             status_cell = row[col_index["ACTUAL STATUS"] - 1]
             old_value = status_cell.value
-            status_cell.value = status.upper()
-            status_cell.fill = PINK_FILL
+            new_value = status.upper()
+            if dry_run:
+                print(f"DRY-RUN: FML would update row {row[0].row} for {comp} (truck {truck_reg}) → '{new_value}' (was: '{old_value}')")
+            else:
+                status_cell.value = new_value
+                status_cell.fill = PINK_FILL
+                print(f"✅ FML: Updated row {row[0].row} for {comp} (truck {truck_reg}) → '{new_value}' (was: '{old_value}')")
             updated_count += 1
-            print(f"✅ FML: Updated row {row[0].row} for {comp} (truck {truck_reg}) → '{status.upper()}' (was: '{old_value}')")
 
     print(f"📊 FML total rows updated: {updated_count}")
 
-def process_natrans_file(natrans_path, wb, ws, col_index):
+def process_natrans_file(natrans_path, wb, ws, col_index, dry_run=False):
     natrans_path = Path(natrans_path)
     if not natrans_path.exists():
         print(f"⚠️ NATRANS file not found: {natrans_path}")
@@ -371,14 +380,18 @@ def process_natrans_file(natrans_path, wb, ws, col_index):
         for row in matching_rows:
             status_cell = row[col_index["ACTUAL STATUS"] - 1]
             old_value = status_cell.value
-            status_cell.value = status.upper()
-            status_cell.fill = PINK_FILL
+            new_value = status.upper()
+            if dry_run:
+                print(f"DRY-RUN: NATRANS would update row {row[0].row} (truck {truck_reg}) → '{new_value}' (was: '{old_value}')")
+            else:
+                status_cell.value = new_value
+                status_cell.fill = PINK_FILL
+                print(f"✅ NATRANS ({natrans_path.name}): Updated row {row[0].row} (truck {truck_reg}) → '{new_value}' (was: '{old_value}')")
             updated_count += 1
-            print(f"✅ NATRANS ({natrans_path.name}): Updated row {row[0].row} (truck {truck_reg}) → '{status.upper()}' (was: '{old_value}')")
 
     print(f"📊 NATRANS ({natrans_path.name}) total rows updated: {updated_count}")
 
-def process_vanito_file(vanito_path, wb, ws, col_index):
+def process_vanito_file(vanito_path, wb, ws, col_index, dry_run=False):
     vanito_path = Path(vanito_path)
     if not vanito_path.exists():
         print(f"⚠️ Vanito file not found: {vanito_path}")
@@ -393,14 +406,14 @@ def process_vanito_file(vanito_path, wb, ws, col_index):
         print(f"⚠️ Could not read sheets from Vanito file: {e}")
         return
 
-    date_pattern = re.compile(r'^(\d{1,2})\s+([A-Z]{3,})\s+(\d{4})$')
+    date_pattern = re.compile(r'^(\d{1,2})\s+([A-Za-z]{3,})\s+(\d{4})$')
     sheet_date_map = {}
     for sheet in sheets:
         m = date_pattern.match(sheet.strip())
         if m:
             day, month_str, year = m.groups()
             try:
-                month_num = datetime.strptime(month_str, "%b").month
+                month_num = datetime.strptime(month_str.title(), "%b").month
                 dt = datetime(int(year), month_num, int(day))
                 sheet_date_map[dt] = sheet
             except ValueError:
@@ -491,10 +504,14 @@ def process_vanito_file(vanito_path, wb, ws, col_index):
         for row in matching_rows:
             status_cell = row[col_index["ACTUAL STATUS"] - 1]
             old_value = status_cell.value
-            status_cell.value = status.upper()
-            status_cell.fill = PINK_FILL
+            new_value = status.upper()
+            if dry_run:
+                print(f"DRY-RUN: Vanito would update row {row[0].row} (truck {truck_reg}) → '{new_value}' (was: '{old_value}')")
+            else:
+                status_cell.value = new_value
+                status_cell.fill = PINK_FILL
+                print(f"✅ Vanito: Updated row {row[0].row} (truck {truck_reg}) → '{new_value}' (was: '{old_value}')")
             updated_count += 1
-            print(f"✅ Vanito: Updated row {row[0].row} (truck {truck_reg}) → '{status.upper()}' (was: '{old_value}')")
 
     print(f"📊 Vanito total rows updated: {updated_count}")
 
@@ -521,7 +538,7 @@ def load_horse_overrides(json_path):
                         overrides[code] = {"status": status, "colour": colour}
     return overrides
 
-def apply_horse_overrides(wb, ws, col_index, overrides):
+def apply_horse_overrides(wb, ws, col_index, overrides, dry_run=False):
     header_row_idx = None
     for row in ws.iter_rows(min_row=1, max_row=100, values_only=False):
         for cell in row:
@@ -544,14 +561,18 @@ def apply_horse_overrides(wb, ws, col_index, overrides):
             override = overrides[reg]
             status_cell = row[col_index["ACTUAL STATUS"] - 1]
             old_value = status_cell.value
-            status_cell.value = override["status"].upper()
-            if override.get("colour") == "pink":
-                status_cell.fill = PINK_FILL
+            new_value = override["status"].upper()
+            if dry_run:
+                print(f"DRY-RUN: MANUAL OVERRIDE would set row {row[0].row} | {reg} → '{new_value}' (was '{old_value}') colour={override.get('colour')}")
+            else:
+                status_cell.value = new_value
+                if override.get("colour") == "pink":
+                    status_cell.fill = PINK_FILL
+                print(f"🎨 MANUAL OVERRIDE: Row {row[0].row} | {reg} → '{new_value}' (was '{old_value}') colour={override.get('colour')}")
             updated_count += 1
-            print(f"🎨 MANUAL OVERRIDE: Row {row[0].row} | {reg} → '{override['status'].upper()}' (was '{old_value}') colour={override.get('colour')}")
     print(f"📌 Total manual overrides applied: {updated_count}")
 
-def update_bartrac_file(bartrac_path, fml_path, oriento_paths, natrans_paths, vanito_path, horse_json):
+def update_bartrac_file(bartrac_path, fml_path, oriento_paths, natrans_paths, vanito_path, horse_json, dry_run=False):
     print(f"\n{'='*60}")
     print(f"Processing: {bartrac_path.name}")
     print(f"{'='*60}")
@@ -585,7 +606,10 @@ def update_bartrac_file(bartrac_path, fml_path, oriento_paths, natrans_paths, va
 
     print(f"Using sheet: '{sheet_name}'")
 
-    create_backup(bartrac_path)
+    if dry_run:
+        print(f"DRY-RUN: Skipping backup for {bartrac_path.name}")
+    else:
+        create_backup(bartrac_path)
 
     wb = load_workbook(bartrac_path)
     ws = wb[sheet_name]
@@ -614,24 +638,50 @@ def update_bartrac_file(bartrac_path, fml_path, oriento_paths, natrans_paths, va
         if col not in col_index:
             raise ValueError(f"Column '{col}' not found in header row")
 
-    process_fml_file(fml_path, wb, ws, col_index)
+    process_fml_file(fml_path, wb, ws, col_index, dry_run=dry_run)
     for oriento_path in oriento_paths:
-        process_oriento_file(oriento_path, wb, ws, col_index)
+        process_oriento_file(oriento_path, wb, ws, col_index, dry_run=dry_run)
     for natrans_path in natrans_paths:
-        process_natrans_file(natrans_path, wb, ws, col_index)
-    process_vanito_file(vanito_path, wb, ws, col_index)
+        process_natrans_file(natrans_path, wb, ws, col_index, dry_run=dry_run)
+    process_vanito_file(vanito_path, wb, ws, col_index, dry_run=dry_run)
 
     overrides = load_horse_overrides(horse_json)
     if overrides:
-        apply_horse_overrides(wb, ws, col_index, overrides)
+        apply_horse_overrides(wb, ws, col_index, overrides, dry_run=dry_run)
     else:
         print("ℹ️ No manual overrides loaded.")
 
-    print(f"💾 Saving changes to original file: {bartrac_path}")
-    wb.save(bartrac_path)
+    if dry_run:
+        print(f"DRY-RUN: Changes not saved to {bartrac_path}")
+    else:
+        print(f"💾 Saving changes to original file: {bartrac_path}")
+        wb.save(bartrac_path)
 
 def main():
-    fml_path = Path(FML_FILE)
+    parser = argparse.ArgumentParser(description='Update BARTRAC files from vendor reports')
+    parser.add_argument('--dry-run', action='store_true', help='Print intended updates without saving changes')
+    args = parser.parse_args()
+    dry_run = args.dry_run
+
+    # Resolve paths (fall back if constants not set)
+    try:
+        fml_path = Path(FML_FILE)
+    except NameError:
+        fml_path = None
+        vendor_folder = Path(VENDOR_FOLDER)
+        if vendor_folder.exists():
+            fml_candidates = [p for p in vendor_folder.glob('*.xlsx') if 'FML' in p.name.upper() and not p.name.startswith('~$')]
+            if fml_candidates:
+                # prefer CAT 6060 files when available, otherwise use any FML file; pick most recent
+                cat_candidates = [p for p in fml_candidates if '6060' in p.name.upper() or 'CAT' in p.name.upper()]
+                candidates = cat_candidates if cat_candidates else fml_candidates
+                try:
+                    fml_path = max(candidates, key=lambda p: p.stat().st_mtime)
+                except Exception:
+                    fml_path = candidates[0]
+        if not fml_path:
+            fml_path = Path("")
+
     oriento_paths = [Path(p) for p in ORIENTO_FILES]
     natrans_paths = [Path(NATRANS_FILE1), Path(NATRANS_FILE2)]
     vanito_path = Path(VANITO_FILE)
@@ -644,7 +694,10 @@ def main():
 
     if not fml_path.exists():
         print(f"ERROR: FML file not found: {fml_path}")
-        sys.exit(1)
+        if dry_run:
+            print("DRY-RUN: continuing despite missing FML file")
+        else:
+            sys.exit(1)
 
     bartrac_files = list(bartrac_folder.glob("*.xlsx"))
     # Filter out temporary files (starting with ~$)
@@ -656,7 +709,7 @@ def main():
     print(f"Found {len(bartrac_files)} BARTRAC file(s) to process.")
     for bartrac_file in bartrac_files:
         try:
-            update_bartrac_file(bartrac_file, fml_path, oriento_paths, natrans_paths, vanito_path, horse_json)
+            update_bartrac_file(bartrac_file, fml_path, oriento_paths, natrans_paths, vanito_path, horse_json, dry_run=dry_run)
         except Exception as e:
             print(f"❌ Failed to process {bartrac_file.name}: {e}")
 
