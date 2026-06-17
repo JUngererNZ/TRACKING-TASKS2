@@ -1,0 +1,433 @@
+ & C:/Python314/python.exe c:/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py
+Found 5 BARTRAC file(s) to process.
+
+============================================================
+Processing: BARTRAC - CONGO TRACKING 15-06-2026.xlsx
+============================================================
+Using sheet: 'CURRENT SHIPMENTS '
+📁 Backup created: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - CONGO TRACKING 15-06-2026_backup_20260616_134210.xlsx
+Reading FML file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT 6060.xlsx
+❌ FML: No row found for truck 'FV44CKGP' (component: CAT 6060 FRAME (RH))
+❌ FML: No row found for truck 'B951BRN' (component: CAT 6060 FRAME (LH))
+❌ FML: No row found for truck 'KP92RMGP' (component: CAT 6060 CAR BODY)
+❌ FML: No row found for truck 'MP78HBGP' (component: CAT 6060 CHASSIS)
+❌ FML: No row found for truck 'BT14FTGP' (component: CAT 6060 MODULE AR POWER)
+❌ FML: No row found for truck 'CP46TLGP' (component: CAT 6060 RISER,COOLER,CABIN,HYDRAULICS)
+❌ FML: No row found for truck 'BT33PGZN' (component: CAT 6060 COUNTERWEIGHT LOWER)
+❌ FML: No row found for truck 'LH95JBGP' (component: CAT 6060 BOOM)
+❌ FML: No row found for truck 'BT33NKZN' (component: CAT 6060 STICK)
+❌ FML: No row found for truck 'AGJ9934' (component: CAT 6060 COUNTERWEIGHT UPPER)
+📊 FML total rows updated: 0
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO KCC_.xlsx (sheet: Lufu shipment )
+Found 1 truck entries in ORIENTO (Lufu shipment )
+❌ ORIENTO (Lufu shipment ): No row found for truck 'LZ27WFGP'
+📊 ORIENTO (Lufu shipment ) total rows updated: 0
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT. - 1 X TRI-AXLE TO LOAD 1 x EG20 MOTOR GRADER -2603DSI2788 - BA2951-FREIGHTSTATIONS SA DURBAN TO KAMOA COPPER SA KOLWEZI DRC.xlsx (sheet: Lufu shipment )
+Found 1 truck entries in ORIENTO (Lufu shipment )
+❌ ORIENTO (Lufu shipment ): No row found for truck 'LZ27WFGP'
+📊 ORIENTO (Lufu shipment ) total rows updated: 0
+Reading NATRANS file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6060 KOLWEZI BA3188.xlsx
+Found 10 truck entries in FML CAT6060 KOLWEZI BA3188.xlsx
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'HZ64MTGP'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'KB15KRGP'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'LL76SZGP'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'MP88PXGP'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'DG63GMZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'BP43GGZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'CL70WLZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'CM09LLZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'CD46KBZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'CV76JXZN'
+📊 NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx) total rows updated: 0
+Reading NATRANS file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6030 SAKANIA BA3159.xlsx
+Found 8 truck entries in FML CAT6030 SAKANIA BA3159.xlsx
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LG 13 WD GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LG 82 TW GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LG 13 ZY GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LH 94 MD GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'CT37XJZN'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LG 14 BM GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LK65PXGP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LL72BGGP'
+📊 NATRANS (FML CAT6030 SAKANIA BA3159.xlsx) total rows updated: 0
+Reading Vanito file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\Vanito Tracking 2026 - FML DBN TO DRC.xlsx
+C:\Users\Jason\AppData\Roaming\Python\Python314\site-packages\openpyxl\reader\workbook.py:118: UserWarning: Print area cannot be set to Defined name: '2 JUNE 2026 '!$B:$L.
+  warn(f"Print area cannot be set to Defined name: {defn.value}.")
+C:\Users\Jason\AppData\Roaming\Python\Python314\site-packages\openpyxl\reader\workbook.py:118: UserWarning: Print area cannot be set to Defined name: '3 JUNE 2026 '!$B:$L.
+  warn(f"Print area cannot be set to Defined name: {defn.value}.")
+Using latest sheet: '28 MAY 2026 ' (date: 2026-05-28)
+Found 11 truck entries in Vanito (sheet: 28 MAY 2026 )
+✅ Vanito: Updated row 4 (truck JK 89 HK GP) → 'MARBLE HALL ON ROUTE BEITBRIDGE BORDER POST' (was: 'LKANBG'ORWIAGNRO')
+✅ Vanito: Updated row 5 (truck HX 20 VW GP) → 'VAN REENEN AWAITING METRO COPS FOR ESCORTING' (was: 'LKANBG'ORWIAGNRO')
+❌ Vanito: No row found for truck 'LB 37 HS GP'
+❌ Vanito: No row found for truck 'JT 84 DP GP'
+❌ Vanito: No row found for truck 'ADS0539'
+❌ Vanito: No row found for truck 'BW 55 TN GP'
+❌ Vanito: No row found for truck 'NPL 556 GP'
+❌ Vanito: No row found for truck 'HL 20 JS GP'
+❌ Vanito: No row found for truck 'MX 97 ZX GP'
+❌ Vanito: No row found for truck 'AEZ8835'
+❌ Vanito: No row found for truck 'BF 26 VM GP'
+📊 Vanito total rows updated: 2
+❌ Invalid JSON in C:\Users\Jason\Projects\TRACKING-TASKS2\horse-registration.json: Expecting property name enclosed in double quotes: line 13 column 3 (char 429)
+ℹ️ No manual overrides loaded.
+💾 Saving changes to original file: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - CONGO TRACKING 15-06-2026.xlsx
+
+============================================================
+Processing: BARTRAC - ERG TRACKING 15-06-2026.xlsx
+============================================================
+Using sheet: 'CURRENT SHIPMENTS '
+📁 Backup created: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - ERG TRACKING 15-06-2026_backup_20260616_134230.xlsx
+Reading FML file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT 6060.xlsx
+❌ FML: No row found for truck 'FV44CKGP' (component: CAT 6060 FRAME (RH))
+❌ FML: No row found for truck 'B951BRN' (component: CAT 6060 FRAME (LH))
+❌ FML: No row found for truck 'KP92RMGP' (component: CAT 6060 CAR BODY)
+❌ FML: No row found for truck 'MP78HBGP' (component: CAT 6060 CHASSIS)
+❌ FML: No row found for truck 'BT14FTGP' (component: CAT 6060 MODULE AR POWER)
+❌ FML: No row found for truck 'CP46TLGP' (component: CAT 6060 RISER,COOLER,CABIN,HYDRAULICS)
+❌ FML: No row found for truck 'BT33PGZN' (component: CAT 6060 COUNTERWEIGHT LOWER)
+❌ FML: No row found for truck 'LH95JBGP' (component: CAT 6060 BOOM)
+❌ FML: No row found for truck 'BT33NKZN' (component: CAT 6060 STICK)
+❌ FML: No row found for truck 'AGJ9934' (component: CAT 6060 COUNTERWEIGHT UPPER)
+📊 FML total rows updated: 0
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO KCC_.xlsx (sheet: Lufu shipment )
+Found 1 truck entries in ORIENTO (Lufu shipment )
+❌ ORIENTO (Lufu shipment ): No row found for truck 'LZ27WFGP'
+📊 ORIENTO (Lufu shipment ) total rows updated: 0
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT. - 1 X TRI-AXLE TO LOAD 1 x EG20 MOTOR GRADER -2603DSI2788 - BA2951-FREIGHTSTATIONS SA DURBAN TO KAMOA COPPER SA KOLWEZI DRC.xlsx (sheet: Lufu shipment )
+Found 1 truck entries in ORIENTO (Lufu shipment )
+❌ ORIENTO (Lufu shipment ): No row found for truck 'LZ27WFGP'
+📊 ORIENTO (Lufu shipment ) total rows updated: 0
+Reading NATRANS file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6060 KOLWEZI BA3188.xlsx
+Found 10 truck entries in FML CAT6060 KOLWEZI BA3188.xlsx
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'HZ64MTGP'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'KB15KRGP'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'LL76SZGP'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'MP88PXGP'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'DG63GMZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'BP43GGZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'CL70WLZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'CM09LLZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'CD46KBZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'CV76JXZN'
+📊 NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx) total rows updated: 0
+Reading NATRANS file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6030 SAKANIA BA3159.xlsx
+Found 8 truck entries in FML CAT6030 SAKANIA BA3159.xlsx
+✅ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): Updated row 2 (truck LG 13 WD GP) → 'OFFLOADED' (was: 'K;NB'ROKNB;RLANBLJFBN')
+✅ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): Updated row 3 (truck LG 82 TW GP) → 'OFFLOADED' (was: 'K;NB'ROKNB;RLANBLJFBN')
+✅ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): Updated row 4 (truck LG 13 ZY GP) → 'OFFLOADED' (was: 'K;NB'ROKNB;RLANBLJFBN')
+✅ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): Updated row 5 (truck LH 94 MD GP) → 'OFFLOADED' (was: 'K;NB'ROKNB;RLANBLJFBN')
+✅ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): Updated row 6 (truck CT37XJZN) → 'FRONTIER BORDER ZAM SIDE WIATING DOCS' (was: 'K;NB'ROKNB;RLANBLJFBN')
+✅ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): Updated row 7 (truck LG 14 BM GP) → 'OFFLOADED' (was: 'K;NB'ROKNB;RLANBLJFBN')
+✅ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): Updated row 8 (truck LK65PXGP) → 'OFFLOADED' (was: 'K;NB'ROKNB;RLANBLJFBN')
+✅ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): Updated row 9 (truck LL72BGGP) → 'OFFLOADED' (was: 'K;NB'ROKNB;RLANBLJFBN')
+📊 NATRANS (FML CAT6030 SAKANIA BA3159.xlsx) total rows updated: 8
+Reading Vanito file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\Vanito Tracking 2026 - FML DBN TO DRC.xlsx
+C:\Users\Jason\AppData\Roaming\Python\Python314\site-packages\openpyxl\reader\workbook.py:118: UserWarning: Print area cannot be set to Defined name: '2 JUNE 2026 '!$B:$L.
+  warn(f"Print area cannot be set to Defined name: {defn.value}.")
+C:\Users\Jason\AppData\Roaming\Python\Python314\site-packages\openpyxl\reader\workbook.py:118: UserWarning: Print area cannot be set to Defined name: '3 JUNE 2026 '!$B:$L.
+  warn(f"Print area cannot be set to Defined name: {defn.value}.")
+Using latest sheet: '28 MAY 2026 ' (date: 2026-05-28)
+Found 11 truck entries in Vanito (sheet: 28 MAY 2026 )
+❌ Vanito: No row found for truck 'JK 89 HK GP'
+❌ Vanito: No row found for truck 'HX 20 VW GP'
+❌ Vanito: No row found for truck 'LB 37 HS GP'
+❌ Vanito: No row found for truck 'JT 84 DP GP'
+❌ Vanito: No row found for truck 'ADS0539'
+❌ Vanito: No row found for truck 'BW 55 TN GP'
+❌ Vanito: No row found for truck 'NPL 556 GP'
+❌ Vanito: No row found for truck 'HL 20 JS GP'
+❌ Vanito: No row found for truck 'MX 97 ZX GP'
+❌ Vanito: No row found for truck 'AEZ8835'
+❌ Vanito: No row found for truck 'BF 26 VM GP'
+📊 Vanito total rows updated: 0
+❌ Invalid JSON in C:\Users\Jason\Projects\TRACKING-TASKS2\horse-registration.json: Expecting property name enclosed in double quotes: line 13 column 3 (char 429)
+ℹ️ No manual overrides loaded.
+💾 Saving changes to original file: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - ERG TRACKING 15-06-2026.xlsx
+
+============================================================
+Processing: BARTRAC - KAMOA TRACKING AS OF 15-06-2026.xlsx
+============================================================
+Using sheet: 'ENROUTE SITE'
+📁 Backup created: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - KAMOA TRACKING AS OF 15-06-2026_backup_20260616_134243.xlsx
+Reading FML file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT 6060.xlsx
+❌ FML: No row found for truck 'FV44CKGP' (component: CAT 6060 FRAME (RH))
+❌ FML: No row found for truck 'B951BRN' (component: CAT 6060 FRAME (LH))
+❌ FML: No row found for truck 'KP92RMGP' (component: CAT 6060 CAR BODY)
+❌ FML: No row found for truck 'MP78HBGP' (component: CAT 6060 CHASSIS)
+❌ FML: No row found for truck 'BT14FTGP' (component: CAT 6060 MODULE AR POWER)
+❌ FML: No row found for truck 'CP46TLGP' (component: CAT 6060 RISER,COOLER,CABIN,HYDRAULICS)
+❌ FML: No row found for truck 'BT33PGZN' (component: CAT 6060 COUNTERWEIGHT LOWER)
+❌ FML: No row found for truck 'LH95JBGP' (component: CAT 6060 BOOM)
+❌ FML: No row found for truck 'BT33NKZN' (component: CAT 6060 STICK)
+❌ FML: No row found for truck 'AGJ9934' (component: CAT 6060 COUNTERWEIGHT UPPER)
+📊 FML total rows updated: 0
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO KCC_.xlsx (sheet: Lufu shipment )
+Found 1 truck entries in ORIENTO (Lufu shipment )
+❌ ORIENTO (Lufu shipment ): No row found for truck 'LZ27WFGP'
+📊 ORIENTO (Lufu shipment ) total rows updated: 0
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT. - 1 X TRI-AXLE TO LOAD 1 x EG20 MOTOR GRADER -2603DSI2788 - BA2951-FREIGHTSTATIONS SA DURBAN TO KAMOA COPPER SA KOLWEZI DRC.xlsx (sheet: Lufu shipment )
+Found 1 truck entries in ORIENTO (Lufu shipment )
+❌ ORIENTO (Lufu shipment ): No row found for truck 'LZ27WFGP'
+📊 ORIENTO (Lufu shipment ) total rows updated: 0
+Reading NATRANS file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6060 KOLWEZI BA3188.xlsx
+Found 10 truck entries in FML CAT6060 KOLWEZI BA3188.xlsx
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'HZ64MTGP'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'KB15KRGP'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'LL76SZGP'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'MP88PXGP'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'DG63GMZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'BP43GGZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'CL70WLZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'CM09LLZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'CD46KBZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'CV76JXZN'
+📊 NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx) total rows updated: 0
+Reading NATRANS file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6030 SAKANIA BA3159.xlsx
+Found 8 truck entries in FML CAT6030 SAKANIA BA3159.xlsx
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LG 13 WD GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LG 82 TW GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LG 13 ZY GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LH 94 MD GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'CT37XJZN'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LG 14 BM GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LK65PXGP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LL72BGGP'
+📊 NATRANS (FML CAT6030 SAKANIA BA3159.xlsx) total rows updated: 0
+Reading Vanito file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\Vanito Tracking 2026 - FML DBN TO DRC.xlsx
+C:\Users\Jason\AppData\Roaming\Python\Python314\site-packages\openpyxl\reader\workbook.py:118: UserWarning: Print area cannot be set to Defined name: '2 JUNE 2026 '!$B:$L.
+  warn(f"Print area cannot be set to Defined name: {defn.value}.")
+C:\Users\Jason\AppData\Roaming\Python\Python314\site-packages\openpyxl\reader\workbook.py:118: UserWarning: Print area cannot be set to Defined name: '3 JUNE 2026 '!$B:$L.
+  warn(f"Print area cannot be set to Defined name: {defn.value}.")
+Using latest sheet: '28 MAY 2026 ' (date: 2026-05-28)
+Found 11 truck entries in Vanito (sheet: 28 MAY 2026 )
+❌ Vanito: No row found for truck 'JK 89 HK GP'
+❌ Vanito: No row found for truck 'HX 20 VW GP'
+❌ Vanito: No row found for truck 'LB 37 HS GP'
+❌ Vanito: No row found for truck 'JT 84 DP GP'
+❌ Vanito: No row found for truck 'ADS0539'
+❌ Vanito: No row found for truck 'BW 55 TN GP'
+❌ Vanito: No row found for truck 'NPL 556 GP'
+❌ Vanito: No row found for truck 'HL 20 JS GP'
+❌ Vanito: No row found for truck 'MX 97 ZX GP'
+❌ Vanito: No row found for truck 'AEZ8835'
+❌ Vanito: No row found for truck 'BF 26 VM GP'
+📊 Vanito total rows updated: 0
+❌ Invalid JSON in C:\Users\Jason\Projects\TRACKING-TASKS2\horse-registration.json: Expecting property name enclosed in double quotes: line 13 column 3 (char 429)
+ℹ️ No manual overrides loaded.
+💾 Saving changes to original file: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - KAMOA TRACKING AS OF 15-06-2026.xlsx
+
+============================================================
+Processing: BARTRAC - KCC TRACKING AS OF 15-06-2026.xlsx
+============================================================
+Using sheet: 'ENROUTE SITE'
+📁 Backup created: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - KCC TRACKING AS OF 15-06-2026_backup_20260616_134245.xlsx
+Reading FML file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT 6060.xlsx
+✅ FML: Updated row 24 for CAT 6060 FRAME (RH) (truck FV44CKGP) → 'WHISKY' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ FML: Updated row 25 for CAT 6060 FRAME (LH) (truck B951BRN) → 'WHISKY' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ FML: Updated row 26 for CAT 6060 CAR BODY (truck KP92RMGP) → '3KM TO KASUMBALESA' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ FML: Updated row 27 for CAT 6060 CHASSIS (truck MP78HBGP) → 'CHISAMBA' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ FML: Updated row 28 for CAT 6060 MODULE AR POWER (truck BT14FTGP) → '3KM TO KASUMBALESA' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ FML: Updated row 29 for CAT 6060 RISER,COOLER,CABIN,HYDRAULICS (truck CP46TLGP) → 'WHISKY' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ FML: Updated row 30 for CAT 6060 COUNTERWEIGHT LOWER (truck BT33PGZN) → 'WHISKY' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ FML: Updated row 31 for CAT 6060 BOOM (truck LH95JBGP) → 'CHIRUNDU-ZIM SIDE' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ FML: Updated row 32 for CAT 6060 STICK (truck BT33NKZN) → 'WHISKY' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ FML: Updated row 33 for CAT 6060 COUNTERWEIGHT UPPER (truck AGJ9934) → 'WISKY' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+📊 FML total rows updated: 10
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO KCC_.xlsx (sheet: Lufu shipment )
+Found 1 truck entries in ORIENTO (Lufu shipment )
+❌ ORIENTO (Lufu shipment ): No row found for truck 'LZ27WFGP'
+📊 ORIENTO (Lufu shipment ) total rows updated: 0
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT. - 1 X TRI-AXLE TO LOAD 1 x EG20 MOTOR GRADER -2603DSI2788 - BA2951-FREIGHTSTATIONS SA DURBAN TO KAMOA COPPER SA KOLWEZI DRC.xlsx (sheet: Lufu shipment )
+Found 1 truck entries in ORIENTO (Lufu shipment )
+❌ ORIENTO (Lufu shipment ): No row found for truck 'LZ27WFGP'
+📊 ORIENTO (Lufu shipment ) total rows updated: 0
+Reading NATRANS file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6060 KOLWEZI BA3188.xlsx
+Found 10 truck entries in FML CAT6060 KOLWEZI BA3188.xlsx
+✅ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): Updated row 7 (truck HZ64MTGP) → 'WHISKEY DAY 2' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): Updated row 8 (truck KB15KRGP) → 'KAFUE ON BREAKDOWN. WAITING PARTS FROM SA' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): Updated row 9 (truck LL76SZGP) → 'WHISKEY DAY 1' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): Updated row 10 (truck MP88PXGP) → 'WHISKEY DAY 1' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): Updated row 11 (truck DG63GMZN) → 'CHINGOLA' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): Updated row 12 (truck BP43GGZN) → 'MIDDELBURG ATTENDING TO BREAKDOWN' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): Updated row 13 (truck CL70WLZN) → 'KASUM ZAM' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): Updated row 14 (truck CM09LLZN) → 'MAKUTI' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): Updated row 15 (truck CD46KBZN) → 'KASUM ZAM' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+✅ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): Updated row 16 (truck CV76JXZN) → 'KWEKWE' (was: 'frkh;lbmjaer'naofdkbn dfojbn')
+📊 NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx) total rows updated: 10
+Reading NATRANS file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6030 SAKANIA BA3159.xlsx
+Found 8 truck entries in FML CAT6030 SAKANIA BA3159.xlsx
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LG 13 WD GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LG 82 TW GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LG 13 ZY GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LH 94 MD GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'CT37XJZN'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LG 14 BM GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LK65PXGP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LL72BGGP'
+📊 NATRANS (FML CAT6030 SAKANIA BA3159.xlsx) total rows updated: 0
+Reading Vanito file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\Vanito Tracking 2026 - FML DBN TO DRC.xlsx
+C:\Users\Jason\AppData\Roaming\Python\Python314\site-packages\openpyxl\reader\workbook.py:118: UserWarning: Print area cannot be set to Defined name: '2 JUNE 2026 '!$B:$L.
+  warn(f"Print area cannot be set to Defined name: {defn.value}.")
+C:\Users\Jason\AppData\Roaming\Python\Python314\site-packages\openpyxl\reader\workbook.py:118: UserWarning: Print area cannot be set to Defined name: '3 JUNE 2026 '!$B:$L.
+  warn(f"Print area cannot be set to Defined name: {defn.value}.")
+Using latest sheet: '28 MAY 2026 ' (date: 2026-05-28)
+Found 11 truck entries in Vanito (sheet: 28 MAY 2026 )
+❌ Vanito: No row found for truck 'JK 89 HK GP'
+❌ Vanito: No row found for truck 'HX 20 VW GP'
+❌ Vanito: No row found for truck 'LB 37 HS GP'
+❌ Vanito: No row found for truck 'JT 84 DP GP'
+❌ Vanito: No row found for truck 'ADS0539'
+❌ Vanito: No row found for truck 'BW 55 TN GP'
+❌ Vanito: No row found for truck 'NPL 556 GP'
+❌ Vanito: No row found for truck 'HL 20 JS GP'
+❌ Vanito: No row found for truck 'MX 97 ZX GP'
+❌ Vanito: No row found for truck 'AEZ8835'
+❌ Vanito: No row found for truck 'BF 26 VM GP'
+📊 Vanito total rows updated: 0
+❌ Invalid JSON in C:\Users\Jason\Projects\TRACKING-TASKS2\horse-registration.json: Expecting property name enclosed in double quotes: line 13 column 3 (char 429)
+ℹ️ No manual overrides loaded.
+💾 Saving changes to original file: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - KCC TRACKING AS OF 15-06-2026.xlsx
+
+============================================================
+Processing: BARTRAC - MUMI TRACKING AS OF 15-06-2026.xlsx
+============================================================
+Using sheet: 'ENROUTE SITE'
+📁 Backup created: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - MUMI TRACKING AS OF 15-06-2026_backup_20260616_134246.xlsx
+Reading FML file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT 6060.xlsx
+❌ FML: No row found for truck 'FV44CKGP' (component: CAT 6060 FRAME (RH))
+❌ FML: No row found for truck 'B951BRN' (component: CAT 6060 FRAME (LH))
+❌ FML: No row found for truck 'KP92RMGP' (component: CAT 6060 CAR BODY)
+❌ FML: No row found for truck 'MP78HBGP' (component: CAT 6060 CHASSIS)
+❌ FML: No row found for truck 'BT14FTGP' (component: CAT 6060 MODULE AR POWER)
+❌ FML: No row found for truck 'CP46TLGP' (component: CAT 6060 RISER,COOLER,CABIN,HYDRAULICS)
+❌ FML: No row found for truck 'BT33PGZN' (component: CAT 6060 COUNTERWEIGHT LOWER)
+❌ FML: No row found for truck 'LH95JBGP' (component: CAT 6060 BOOM)
+❌ FML: No row found for truck 'BT33NKZN' (component: CAT 6060 STICK)
+❌ FML: No row found for truck 'AGJ9934' (component: CAT 6060 COUNTERWEIGHT UPPER)
+📊 FML total rows updated: 0
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO KCC_.xlsx (sheet: Lufu shipment )
+Found 1 truck entries in ORIENTO (Lufu shipment )
+❌ ORIENTO (Lufu shipment ): No row found for truck 'LZ27WFGP'
+📊 ORIENTO (Lufu shipment ) total rows updated: 0
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT. - 1 X TRI-AXLE TO LOAD 1 x EG20 MOTOR GRADER -2603DSI2788 - BA2951-FREIGHTSTATIONS SA DURBAN TO KAMOA COPPER SA KOLWEZI DRC.xlsx (sheet: Lufu shipment )
+Found 1 truck entries in ORIENTO (Lufu shipment )
+❌ ORIENTO (Lufu shipment ): No row found for truck 'LZ27WFGP'
+📊 ORIENTO (Lufu shipment ) total rows updated: 0
+Reading NATRANS file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6060 KOLWEZI BA3188.xlsx
+Found 10 truck entries in FML CAT6060 KOLWEZI BA3188.xlsx
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'HZ64MTGP'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'KB15KRGP'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'LL76SZGP'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'MP88PXGP'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'DG63GMZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'BP43GGZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'CL70WLZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'CM09LLZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'CD46KBZN'
+❌ NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx): No row found for truck 'CV76JXZN'
+📊 NATRANS (FML CAT6060 KOLWEZI BA3188.xlsx) total rows updated: 0
+Reading NATRANS file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6030 SAKANIA BA3159.xlsx
+Found 8 truck entries in FML CAT6030 SAKANIA BA3159.xlsx
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LG 13 WD GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LG 82 TW GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LG 13 ZY GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LH 94 MD GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'CT37XJZN'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LG 14 BM GP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LK65PXGP'
+❌ NATRANS (FML CAT6030 SAKANIA BA3159.xlsx): No row found for truck 'LL72BGGP'
+📊 NATRANS (FML CAT6030 SAKANIA BA3159.xlsx) total rows updated: 0
+Reading Vanito file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\Vanito Tracking 2026 - FML DBN TO DRC.xlsx
+C:\Users\Jason\AppData\Roaming\Python\Python314\site-packages\openpyxl\reader\workbook.py:118: UserWarning: Print area cannot be set to Defined name: '2 JUNE 2026 '!$B:$L.
+  warn(f"Print area cannot be set to Defined name: {defn.value}.")
+C:\Users\Jason\AppData\Roaming\Python\Python314\site-packages\openpyxl\reader\workbook.py:118: UserWarning: Print area cannot be set to Defined name: '3 JUNE 2026 '!$B:$L.
+  warn(f"Print area cannot be set to Defined name: {defn.value}.")
+Using latest sheet: '28 MAY 2026 ' (date: 2026-05-28)
+Found 11 truck entries in Vanito (sheet: 28 MAY 2026 )
+❌ Vanito: No row found for truck 'JK 89 HK GP'
+❌ Vanito: No row found for truck 'HX 20 VW GP'
+✅ Vanito: Updated row 8 (truck LB 37 HS GP) → 'VAN REENEN ON ROUTE JHB' (was: 'IULAERHG;JBG')
+❌ Vanito: No row found for truck 'JT 84 DP GP'
+✅ Vanito: Updated row 10 (truck ADS0539) → 'MAYDON WARF' (was: 'IULAERHG;JBG')
+❌ Vanito: No row found for truck 'BW 55 TN GP'
+✅ Vanito: Updated row 12 (truck NPL 556 GP) → 'VAN REENEN ON ROUTE JHB' (was: 'IULAERHG;JBG')
+✅ Vanito: Updated row 13 (truck HL 20 JS GP) → 'VANITO YARD' (was: 'IULAERHG;JBG')
+✅ Vanito: Updated row 14 (truck MX 97 ZX GP) → 'VANITO YARD' (was: 'IULAERHG;JBG')
+✅ Vanito: Updated row 15 (truck AEZ8835) → 'VANITO YARD' (was: 'IULAERHG;JBG')
+✅ Vanito: Updated row 16 (truck BF 26 VM GP) → 'PASSING MOOI RIVER ON ROUTE JHB' (was: 'IULAERHG;JBG')
+✅ Vanito: Updated row 17 (truck BF 26 VM GP) → 'PASSING MOOI RIVER ON ROUTE JHB' (was: 'IULAERHG;JBG')
+📊 Vanito total rows updated: 8
+❌ Invalid JSON in C:\Users\Jason\Projects\TRACKING-TASKS2\horse-registration.json: Expecting property name enclosed in double quotes: line 13 column 3 (char 429)
+ℹ️ No manual overrides loaded.
+💾 Saving changes to original file: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - MUMI TRACKING AS OF 15-06-2026.xlsx
+
+✅ All BARTRAC files processed.
+PS C:\Users\Jason\Projects\TRACKING-TASKS2> & C:/Python314/python.exe c:/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py
+🔍 Scanning BARTRAC files to build truck mapping...
+⚠️ Could not read sheet 'CURRENT SHIPMENTS' from BARTRAC - CONGO TRACKING 15-06-2026.xlsx: Worksheet named 'CURRENT SHIPMENTS' not found
+⚠️ Could not read sheet 'CURRENT SHIPMENTS' from BARTRAC - ERG TRACKING 15-06-2026.xlsx: Worksheet named 'CURRENT SHIPMENTS' not found
+⚠️ No 'HORSE REG NO' column found in BARTRAC - KAMOA TRACKING AS OF 15-06-2026.xlsx (sheet ENROUTE SITE)
+⚠️ No 'HORSE REG NO' column found in BARTRAC - KCC TRACKING AS OF 15-06-2026.xlsx (sheet ENROUTE SITE)
+⚠️ No 'HORSE REG NO' column found in BARTRAC - MUMI TRACKING AS OF 15-06-2026.xlsx (sheet ENROUTE SITE)
+✅ Found 0 unique truck registrations across 0 files.
+
+Reading FML file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT 6060.xlsx
+⚠️ Truck 'FV44CKGP' from FML not found in any BARTRAC file.
+⚠️ Truck 'B951BRN' from FML not found in any BARTRAC file.
+⚠️ Truck 'KP92RMGP' from FML not found in any BARTRAC file.
+⚠️ Truck 'MP78HBGP' from FML not found in any BARTRAC file.
+⚠️ Truck 'BT14FTGP' from FML not found in any BARTRAC file.
+⚠️ Truck 'CP46TLGP' from FML not found in any BARTRAC file.
+⚠️ Truck 'BT33PGZN' from FML not found in any BARTRAC file.
+⚠️ Truck 'LH95JBGP' from FML not found in any BARTRAC file.
+⚠️ Truck 'BT33NKZN' from FML not found in any BARTRAC file.
+⚠️ Truck 'AGJ9934' from FML not found in any BARTRAC file.
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO KCC_.xlsx (sheet: Lufu shipment )
+⚠️ Truck 'LZ27WFGP' from Oriento (ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO KCC_.xlsx) not found in any BARTRAC file.
+Using hardcoded sheet '2603DSI2788' for EG20 file: ORIENTO TRACKING REPORT. - 1 X TRI-AXLE TO LOAD 1 x EG20 MOTOR GRADER -2603DSI2788 - BA2951-FREIGHTSTATIONS SA DURBAN TO KAMOA COPPER SA KOLWEZI DRC.xlsx
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT. - 1 X TRI-AXLE TO LOAD 1 x EG20 MOTOR GRADER -2603DSI2788 - BA2951-FREIGHTSTATIONS SA DURBAN TO KAMOA COPPER SA KOLWEZI DRC.xlsx (sheet: 2603DSI2788)
+⚠️ Could not read sheet '2603DSI2788': Worksheet named '2603DSI2788' not found
+ℹ️ No updates from Oriento (ORIENTO TRACKING REPORT. - 1 X TRI-AXLE TO LOAD 1 x EG20 MOTOR GRADER -2603DSI2788 - BA2951-FREIGHTSTATIONS SA DURBAN TO KAMOA COPPER SA KOLWEZI DRC.xlsx)
+Reading NATRANS file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6060 KOLWEZI BA3188.xlsx
+⚠️ Truck 'HZ64MTGP' from Natrans (FML CAT6060 KOLWEZI BA3188.xlsx) not found in any BARTRAC file.
+⚠️ Truck 'KB15KRGP' from Natrans (FML CAT6060 KOLWEZI BA3188.xlsx) not found in any BARTRAC file.
+⚠️ Truck 'LL76SZGP' from Natrans (FML CAT6060 KOLWEZI BA3188.xlsx) not found in any BARTRAC file.
+⚠️ Truck 'MP88PXGP' from Natrans (FML CAT6060 KOLWEZI BA3188.xlsx) not found in any BARTRAC file.
+⚠️ Truck 'DG63GMZN' from Natrans (FML CAT6060 KOLWEZI BA3188.xlsx) not found in any BARTRAC file.
+⚠️ Truck 'BP43GGZN' from Natrans (FML CAT6060 KOLWEZI BA3188.xlsx) not found in any BARTRAC file.
+⚠️ Truck 'CL70WLZN' from Natrans (FML CAT6060 KOLWEZI BA3188.xlsx) not found in any BARTRAC file.
+⚠️ Truck 'CM09LLZN' from Natrans (FML CAT6060 KOLWEZI BA3188.xlsx) not found in any BARTRAC file.
+⚠️ Truck 'CD46KBZN' from Natrans (FML CAT6060 KOLWEZI BA3188.xlsx) not found in any BARTRAC file.
+⚠️ Truck 'CV76JXZN' from Natrans (FML CAT6060 KOLWEZI BA3188.xlsx) not found in any BARTRAC file.
+Reading NATRANS file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6030 SAKANIA BA3159.xlsx
+⚠️ Truck 'LG 13 WD GP' from Natrans (FML CAT6030 SAKANIA BA3159.xlsx) not found in any BARTRAC file.
+⚠️ Truck 'LG 82 TW GP' from Natrans (FML CAT6030 SAKANIA BA3159.xlsx) not found in any BARTRAC file.
+⚠️ Truck 'LG 13 ZY GP' from Natrans (FML CAT6030 SAKANIA BA3159.xlsx) not found in any BARTRAC file.
+⚠️ Truck 'LH 94 MD GP' from Natrans (FML CAT6030 SAKANIA BA3159.xlsx) not found in any BARTRAC file.
+⚠️ Truck 'CT37XJZN' from Natrans (FML CAT6030 SAKANIA BA3159.xlsx) not found in any BARTRAC file.
+⚠️ Truck 'LG 14 BM GP' from Natrans (FML CAT6030 SAKANIA BA3159.xlsx) not found in any BARTRAC file.
+⚠️ Truck 'LK65PXGP' from Natrans (FML CAT6030 SAKANIA BA3159.xlsx) not found in any BARTRAC file.
+⚠️ Truck 'LL72BGGP' from Natrans (FML CAT6030 SAKANIA BA3159.xlsx) not found in any BARTRAC file.
+Reading Vanito file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\Vanito Tracking 2026 - FML DBN TO DRC.xlsx
+C:\Users\Jason\AppData\Roaming\Python\Python314\site-packages\openpyxl\reader\workbook.py:118: UserWarning: Print area cannot be set to Defined name: '2 JUNE 2026 '!$B:$L.
+  warn(f"Print area cannot be set to Defined name: {defn.value}.")
+C:\Users\Jason\AppData\Roaming\Python\Python314\site-packages\openpyxl\reader\workbook.py:118: UserWarning: Print area cannot be set to Defined name: '3 JUNE 2026 '!$B:$L.
+  warn(f"Print area cannot be set to Defined name: {defn.value}.")
+Using latest sheet: '28 MAY 2026 ' (date: 2026-05-28)
+⚠️ Truck 'JK 89 HK GP' from Vanito not found in any BARTRAC file.
+⚠️ Truck 'HX 20 VW GP' from Vanito not found in any BARTRAC file.
+⚠️ Truck 'LB 37 HS GP' from Vanito not found in any BARTRAC file.
+⚠️ Truck 'JT 84 DP GP' from Vanito not found in any BARTRAC file.
+⚠️ Truck 'ADS0539' from Vanito not found in any BARTRAC file.
+⚠️ Truck 'BW 55 TN GP' from Vanito not found in any BARTRAC file.
+⚠️ Truck 'NPL 556 GP' from Vanito not found in any BARTRAC file.
+⚠️ Truck 'HL 20 JS GP' from Vanito not found in any BARTRAC file.
+⚠️ Truck 'MX 97 ZX GP' from Vanito not found in any BARTRAC file.
+⚠️ Truck 'AEZ8835' from Vanito not found in any BARTRAC file.
+⚠️ Truck 'BF 26 VM GP' from Vanito not found in any BARTRAC file.
+❌ Invalid JSON in C:\Users\Jason\Projects\TRACKING-TASKS2\horse-registration.json: Expecting property name enclosed in double quotes: line 13 column 3 (char 429)
+ℹ️ No manual overrides loaded.
+
+✅ All updates completed.
+PS C:\Users\Jason\Projects\TRACKING-TASKS2> 

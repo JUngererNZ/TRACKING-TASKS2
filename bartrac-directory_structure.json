@@ -1,0 +1,37 @@
+{
+    "name": "BARTRAC-TRACKING",
+    "type": "directory",
+    "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\BARTRAC-TRACKING",
+    "children": [
+        {
+            "name": "BARTRAC - CONGO TRACKING 15-06-2026.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\BARTRAC-TRACKING\\BARTRAC - CONGO TRACKING 15-06-2026.xlsx",
+            "size_bytes": 2862824
+        },
+        {
+            "name": "BARTRAC - ERG TRACKING 15-06-2026.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\BARTRAC-TRACKING\\BARTRAC - ERG TRACKING 15-06-2026.xlsx",
+            "size_bytes": 1896373
+        },
+        {
+            "name": "BARTRAC - KAMOA TRACKING AS OF 15-06-2026.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\BARTRAC-TRACKING\\BARTRAC - KAMOA TRACKING AS OF 15-06-2026.xlsx",
+            "size_bytes": 611393
+        },
+        {
+            "name": "BARTRAC - KCC TRACKING AS OF 15-06-2026.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\BARTRAC-TRACKING\\BARTRAC - KCC TRACKING AS OF 15-06-2026.xlsx",
+            "size_bytes": 346456
+        },
+        {
+            "name": "BARTRAC - MUMI TRACKING AS OF 15-06-2026.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\BARTRAC-TRACKING\\BARTRAC - MUMI TRACKING AS OF 15-06-2026.xlsx",
+            "size_bytes": 172924
+        }
+    ]
+}

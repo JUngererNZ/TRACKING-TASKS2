@@ -1,0 +1,105 @@
+ & C:/Python314/python.exe c:/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py
+Found 5 BARTRAC file(s) to process.
+
+============================================================
+Processing: BARTRAC - CONGO TRACKING 15-06-2026.xlsx
+============================================================
+📁 Backup created: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - CONGO TRACKING 15-06-2026_backup_20260615_152425.xlsx
+Opening BARTRAC file: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - CONGO TRACKING 15-06-2026.xlsx
+❌ Failed to process BARTRAC - CONGO TRACKING 15-06-2026.xlsx: 'Worksheet ENROUTE SITE does not exist.'
+
+============================================================
+Processing: BARTRAC - ERG TRACKING 15-06-2026.xlsx
+============================================================
+📁 Backup created: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - ERG TRACKING 15-06-2026_backup_20260615_152428.xlsx
+Opening BARTRAC file: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - ERG TRACKING 15-06-2026.xlsx
+❌ Failed to process BARTRAC - ERG TRACKING 15-06-2026.xlsx: 'Worksheet ENROUTE SITE does not exist.'
+
+============================================================
+Processing: BARTRAC - KAMOA TRACKING AS OF 15-06-2026.xlsx
+============================================================
+📁 Backup created: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - KAMOA TRACKING AS OF 15-06-2026_backup_20260615_152428.xlsx
+Opening BARTRAC file: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - KAMOA TRACKING AS OF 15-06-2026.xlsx
+Reading FML file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT 6060.xlsx
+❌ FML: No row found for truck 'FV44CKGP' (component: CAT 6060 FRAME (RH))
+❌ FML: No row found for truck 'B951BRN' (component: CAT 6060 FRAME (LH))
+❌ FML: No row found for truck 'KP92RMGP' (component: CAT 6060 CAR BODY)
+❌ FML: No row found for truck 'MP78HBGP' (component: CAT 6060 CHASSIS)
+❌ FML: No row found for truck 'BT14FTGP' (component: CAT 6060 MODULE AR POWER)
+❌ FML: No row found for truck 'CP46TLGP' (component: CAT 6060 RISER,COOLER,CABIN,HYDRAULICS)
+❌ FML: No row found for truck 'BT33PGZN' (component: CAT 6060 COUNTERWEIGHT LOWER)
+❌ FML: No row found for truck 'LH95JBGP' (component: CAT 6060 BOOM)
+❌ FML: No row found for truck 'BT33NKZN' (component: CAT 6060 STICK)
+❌ FML: No row found for truck 'AGJ9934' (component: CAT 6060 COUNTERWEIGHT UPPER)
+📊 FML total rows updated: 0
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO KCC_.xlsx (sheet: BA3189)
+Found 6 truck entries in ORIENTO (BA3189) using CURRENT LOCATION
+❌ ORIENTO (BA3189): No row found for truck 'BCJ768ZM'
+❌ ORIENTO (BA3189): No row found for truck 'BCG843ZM'
+❌ ORIENTO (BA3189): No row found for truck 'BCG6026ZM'
+❌ ORIENTO (BA3189): No row found for truck 'BCG7922ZM'
+❌ ORIENTO (BA3189): No row found for truck 'BCH3639ZM'
+❌ ORIENTO (BA3189): No row found for truck 'BCG4022ZM'
+📊 ORIENTO (BA3189) total rows updated: 0
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT. - 1 X TRI-AXLE TO LOAD 1 x EG20 MOTOR GRADER -2603DSI2788 - BA2951-FREIGHTSTATIONS SA DURBAN TO KAMOA COPPER SA KOLWEZI DRC.xlsx (sheet: 2603DSI2788)
+❌ Failed to process BARTRAC - KAMOA TRACKING AS OF 15-06-2026.xlsx: Worksheet named '2603DSI2788' not found
+
+============================================================
+Processing: BARTRAC - KCC TRACKING AS OF 15-06-2026.xlsx
+============================================================
+📁 Backup created: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - KCC TRACKING AS OF 15-06-2026_backup_20260615_152429.xlsx
+Opening BARTRAC file: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - KCC TRACKING AS OF 15-06-2026.xlsx
+Reading FML file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT 6060.xlsx
+✅ FML: Updated row 24 for CAT 6060 FRAME (RH) (truck FV44CKGP) → 'WHISKY' (was: 'VEHICLE TO LOAD AND DISPATCH FROM DURBAN WEDNESDAY ')
+✅ FML: Updated row 25 for CAT 6060 FRAME (LH) (truck B951BRN) → 'WHISKY' (was: 'VEHICLE TO LOAD AND DISPATCH FROM DURBAN WEDNESDAY ')
+✅ FML: Updated row 26 for CAT 6060 CAR BODY (truck KP92RMGP) → '3KM TO KASUMBALESA' (was: 'VEHICLE TO LOAD AND DISPATCH FROM DURBAN WEDNESDAY ')
+✅ FML: Updated row 27 for CAT 6060 CHASSIS (truck MP78HBGP) → 'CHISAMBA' (was: 'VEHICLE TO LOAD AND DISPATCH FROM DURBAN WEDNESDAY ')
+✅ FML: Updated row 28 for CAT 6060 MODULE AR POWER (truck BT14FTGP) → '3KM TO KASUMBALESA' (was: 'VEHICLE TO LOAD AND DISPATCH FROM DURBAN WEDNESDAY ')
+✅ FML: Updated row 29 for CAT 6060 RISER,COOLER,CABIN,HYDRAULICS (truck CP46TLGP) → 'WHISKY' (was: 'VEHICLE TO LOAD AND DISPATCH FROM DURBAN WEDNESDAY ')
+✅ FML: Updated row 30 for CAT 6060 COUNTERWEIGHT LOWER (truck BT33PGZN) → 'WHISKY' (was: 'VEHICLE TO LOAD AND DISPATCH FROM DURBAN WEDNESDAY ')
+✅ FML: Updated row 31 for CAT 6060 BOOM (truck LH95JBGP) → 'CHIRUNDU-ZIM SIDE' (was: 'VEHICLE TO LOAD AND DISPATCH FROM DURBAN WEDNESDAY ')
+✅ FML: Updated row 32 for CAT 6060 STICK (truck BT33NKZN) → 'WHISKY' (was: 'VEHICLE TO LOAD AND DISPATCH FROM DURBAN WEDNESDAY ')
+✅ FML: Updated row 33 for CAT 6060 COUNTERWEIGHT UPPER (truck AGJ9934) → 'WISKY' (was: 'VEHICLE TO LOAD AND DISPATCH FROM DURBAN WEDNESDAY ')
+📊 FML total rows updated: 10
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO KCC_.xlsx (sheet: BA3189)
+Found 6 truck entries in ORIENTO (BA3189) using CURRENT LOCATION
+✅ ORIENTO (BA3189): Updated row 36 (truck BCJ768ZM) → 'CHINGOLA' (was: 'VEHICLE TO LOAD AND DISPATCH FROM DURBAN WEDNESDAY ')
+✅ ORIENTO (BA3189): Updated row 35 (truck BCG843ZM) → 'CHINGOLA' (was: 'VEHICLE TO LOAD AND DISPATCH FROM DURBAN WEDNESDAY ')
+✅ ORIENTO (BA3189): Updated row 34 (truck BCG6026ZM) → 'CHINGOLA' (was: 'VEHICLE TO LOAD AND DISPATCH FROM DURBAN WEDNESDAY ')
+✅ ORIENTO (BA3189): Updated row 37 (truck BCG7922ZM) → 'CHINGOLA' (was: 'VEHICLE TO LOAD AND DISPATCH FROM DURBAN WEDNESDAY ')
+✅ ORIENTO (BA3189): Updated row 38 (truck BCH3639ZM) → 'CHINGOLA' (was: 'VEHICLE TO LOAD AND DISPATCH FROM DURBAN WEDNESDAY ')
+✅ ORIENTO (BA3189): Updated row 39 (truck BCG4022ZM) → 'KASUMBALESA-MOKAMBO PEAGE' (was: 'VEHICLE TO LOAD AND DISPATCH FROM DURBAN WEDNESDAY ')
+📊 ORIENTO (BA3189) total rows updated: 6
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT. - 1 X TRI-AXLE TO LOAD 1 x EG20 MOTOR GRADER -2603DSI2788 - BA2951-FREIGHTSTATIONS SA DURBAN TO KAMOA COPPER SA KOLWEZI DRC.xlsx (sheet: 2603DSI2788)
+❌ Failed to process BARTRAC - KCC TRACKING AS OF 15-06-2026.xlsx: Worksheet named '2603DSI2788' not found
+
+============================================================
+Processing: BARTRAC - MUMI TRACKING AS OF 15-06-2026.xlsx
+============================================================
+📁 Backup created: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - MUMI TRACKING AS OF 15-06-2026_backup_20260615_152430.xlsx
+Opening BARTRAC file: C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING\BARTRAC - MUMI TRACKING AS OF 15-06-2026.xlsx
+Reading FML file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT 6060.xlsx
+❌ FML: No row found for truck 'FV44CKGP' (component: CAT 6060 FRAME (RH))
+❌ FML: No row found for truck 'B951BRN' (component: CAT 6060 FRAME (LH))
+❌ FML: No row found for truck 'KP92RMGP' (component: CAT 6060 CAR BODY)
+❌ FML: No row found for truck 'MP78HBGP' (component: CAT 6060 CHASSIS)
+❌ FML: No row found for truck 'BT14FTGP' (component: CAT 6060 MODULE AR POWER)
+❌ FML: No row found for truck 'CP46TLGP' (component: CAT 6060 RISER,COOLER,CABIN,HYDRAULICS)
+❌ FML: No row found for truck 'BT33PGZN' (component: CAT 6060 COUNTERWEIGHT LOWER)
+❌ FML: No row found for truck 'LH95JBGP' (component: CAT 6060 BOOM)
+❌ FML: No row found for truck 'BT33NKZN' (component: CAT 6060 STICK)
+❌ FML: No row found for truck 'AGJ9934' (component: CAT 6060 COUNTERWEIGHT UPPER)
+📊 FML total rows updated: 0
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO KCC_.xlsx (sheet: BA3189)
+Found 6 truck entries in ORIENTO (BA3189) using CURRENT LOCATION
+❌ ORIENTO (BA3189): No row found for truck 'BCJ768ZM'
+❌ ORIENTO (BA3189): No row found for truck 'BCG843ZM'
+❌ ORIENTO (BA3189): No row found for truck 'BCG6026ZM'
+❌ ORIENTO (BA3189): No row found for truck 'BCG7922ZM'
+❌ ORIENTO (BA3189): No row found for truck 'BCH3639ZM'
+❌ ORIENTO (BA3189): No row found for truck 'BCG4022ZM'
+📊 ORIENTO (BA3189) total rows updated: 0
+Reading ORIENTO file: C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT. - 1 X TRI-AXLE TO LOAD 1 x EG20 MOTOR GRADER -2603DSI2788 - BA2951-FREIGHTSTATIONS SA DURBAN TO KAMOA COPPER SA KOLWEZI DRC.xlsx (sheet: 2603DSI2788)
+❌ Failed to process BARTRAC - MUMI TRACKING AS OF 15-06-2026.xlsx: Worksheet named '2603DSI2788' not found
+
+✅ All BARTRAC files processed.

@@ -1,0 +1,12 @@
+TRACKING-TASKS2/
+├── vendor-report/
+│   ├── FML CAT 6060.xlsx
+│   ├── ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO KCC_.xlsx
+│   ├── FML CAT6060 KOLWEZI BA3188.xlsx
+│   └── FML CAT6030 SAKANIA BA3159.xlsx
+├── BARTRAC-TRACKING/
+│   ├── BARTRAC - KCC TRACKING AS OF 15-06-2026.xlsx
+│   ├── BARTRAC - MUMI TRACKING AS OF 15-06-2026.xlsx
+│   ├── BARTRAC - KAMOA TRACKING AS OF 15-06-2026.xlsx
+│   └── ... (any other .xlsx)
+└── this_script.py
