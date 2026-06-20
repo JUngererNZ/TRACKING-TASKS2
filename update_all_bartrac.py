@@ -102,13 +102,16 @@ def process_oriento_file(oriento_path):
         print(f"⚠️ Could not read sheet '{sheet_name}': {e}")
         return truck_to_status
 
-    # Find header row
+    # Find header row (look for TRUCK / HORSE keywords)
     header_idx = None
+    header_keywords = ["TRUCK NUMBER", "TRUCK NO", "TRUCK", "HORSE", "HORSE REG", "HORSE REG NO"]
     for idx, row in df_raw.iterrows():
-        for cell in row.iloc[:20]:
-            if pd.notna(cell) and "TRUCK NUMBER" in str(cell).upper():
-                header_idx = idx
-                break
+        for cell in row.iloc[:40]:
+            if pd.notna(cell):
+                cell_upper = str(cell).upper()
+                if any(kw in cell_upper for kw in header_keywords):
+                    header_idx = idx
+                    break
         if header_idx is not None:
             break
     
@@ -123,11 +126,13 @@ def process_oriento_file(oriento_path):
     for i, val in enumerate(header_row):
         if pd.notna(val):
             val_str = str(val).strip().upper()
-            if "TRUCK NUMBER" in val_str:
+            # truck/horse identification
+            if any(x in val_str for x in ["TRUCK NUMBER", "TRUCK NO", "TRUCK", "HORSE", "HORSE REG"]):
                 truck_col = i
-            elif "CURRENT LOCATION" in val_str:
+            # location/status identification (accept multiple variants used by vendor sheets)
+            if any(x in val_str for x in ["CURRENT LOCATION", "LOCATION", "DESTINATION", "LOADING PLACE", "SITE"]):
                 location_col = i
-            elif "CURRENT STATUS" in val_str:
+            if any(x in val_str for x in ["CURRENT STATUS", "STATUS", "REMARKS", "COMMENT", "COMMENTS"]):
                 status_col = i
 
     if truck_col is None:
