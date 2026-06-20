@@ -63,12 +63,18 @@ def get_sheet_name_for_bartrac(bartrac_path):
 def find_oriento_sheet(file_path):
     try:
         xl = pd.ExcelFile(file_path)
+        # broader keyword set to capture variations in ORIENTO/ Caterpillar sheets
+        keywords = ["TRUCK NUMBER", "TRUCK NO", "TRUCK", "HORSE", "HORSE REG", "HORSE REG NO", "HORSE REGISTRATION"]
         for sheet in xl.sheet_names:
-            df_sample = pd.read_excel(file_path, sheet_name=sheet, header=None, nrows=20)
+            # read a larger sample area to catch headers that aren't in the very top rows
+            df_sample = pd.read_excel(file_path, sheet_name=sheet, header=None, nrows=100, dtype=str)
             for _, row in df_sample.iterrows():
-                for cell in row.iloc[:20]:
-                    if pd.notna(cell) and "TRUCK NUMBER" in str(cell).upper():
-                        return sheet
+                for cell in row.iloc[:40]:
+                    if pd.notna(cell):
+                        cell_upper = str(cell).upper()
+                        for kw in keywords:
+                            if kw in cell_upper:
+                                return sheet
         return None
     except Exception as e:
         print(f"⚠️ Could not read sheets from {file_path}: {e}")
@@ -597,7 +603,24 @@ def main():
         if not fml_path:
             fml_path = Path("")
 
-    oriento_paths = [Path(p) for p in ORIENTO_FILES]
+    # Discover vendor files: prefer actual files in vendor-report over brittle hardcoded paths
+    vendor_folder = Path(VENDOR_FOLDER)
+
+    # ORIENTO / CATERPILLAR files: include any explicit paths that exist, then discover by name
+    oriento_paths = []
+    for p in ORIENTO_FILES:
+        pp = Path(p)
+        if pp.exists():
+            oriento_paths.append(pp)
+    if vendor_folder.exists():
+        discovered = sorted([p for p in vendor_folder.glob('*.xlsx') if 'ORIENTO' in p.name.upper() or 'CATERPILLAR' in p.name.upper()])
+        for p in discovered:
+            if p not in oriento_paths:
+                oriento_paths.append(p)
+    # Fallback: keep original list as Paths (may include non-existing paths)
+    if not oriento_paths:
+        oriento_paths = [Path(p) for p in ORIENTO_FILES]
+
     natrans_paths = [Path(NATRANS_FILE1), Path(NATRANS_FILE2)]
     vanito_path = Path(VANITO_FILE)
     bartrac_folder = Path(BARTRAC_FOLDER)
