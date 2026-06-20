@@ -490,10 +490,18 @@ def apply_status_map_to_bartrac(bartrac_path, status_map, overrides, dry_run=Fal
     if sheet_name is None:
         try:
             wb = load_workbook(bartrac_path)
-            if "ENROUTE SITE" in wb.sheetnames:
-                sheet_name = "ENROUTE SITE"
-            elif "CURRENT SHIPMENTS" in wb.sheetnames:
-                sheet_name = "CURRENT SHIPMENTS"
+            found = None
+            for s in wb.sheetnames:
+                if s.strip() == "ENROUTE SITE":
+                    found = s
+                    break
+            if found is None:
+                for s in wb.sheetnames:
+                    if s.strip() == "CURRENT SHIPMENTS":
+                        found = s
+                        break
+            if found is not None:
+                sheet_name = found
             else:
                 print(f"❌ No known sheet found in {bartrac_path.name}")
                 return
