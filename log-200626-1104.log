@@ -27,3 +27,51 @@ from the script remove the references from # Special case for BA2951 (EG20) file
 
 Done. Removed the hardcoded BA2951/EG20 special case. The script now uses the generic find_oriento_sheet() logic for all ORIENTO files, which automatically locates the correct sheet by searching for the "TRUCK NUMBER" column header. This makes the code cleaner and more maintainable.
 
+
+Optimized tool selection
+
+Checking the current script contents and file path definitions to identify any newly added vendor or BARTRAC entries.
+
+Inspecting the rest of the script to confirm whether the new file list variables are used correctly and whether any new vendor entries are problematic.
+
+Reviewing main() and configuration usage to spot any new/mismatched file list entries or broken references.
+
+Found mismatched file-variable usage in main(); patching FML/NATRANS path resolution so the current list-style config works correctly.
+
+Edited
+update_all_bartrac.py+17-6
+I checked update_all_bartrac.py and found the current config defines FML_FILE and NATRANS_FILE as lists, while main() still expected scalar variables. I patched main() so it now:
+
+selects the first existing FML_FILE path from the list
+falls back to discovering FML files if none exist
+builds natrans_paths from NATRANS_FILE list entries
+This ensures new file entry behavior is handled correctly without crashes.
+
+Optimized tool selectionChecking the current script contents and file path definitions to identify any newly added vendor or BARTRAC entries.
+
+Read [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py#1-1), lines 1 to 260
+
+Inspecting the rest of the script to confirm whether the new file list variables are used correctly and whether any new vendor entries are problematic.
+
+Searched for regex `FML_FILE|NATRANS_FILE|ORIENTO_FILES|VANITO_FILE|HORSE_OVERRIDE_JSON|use-hardcoded|hardcoded` (`**/update_all_bartrac.py`), 27 results
+
+Reviewing main() and configuration usage to spot any new/mismatched file list entries or broken references.
+
+Read [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py#580-580), lines 580 to 728
+
+Found mismatched file-variable usage in `main()`; patching FML/NATRANS path resolution so the current list-style config works correctly.
+
+Replacing 22 lines with 33 lines in [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py)
+
+
+```
+
+```
+I checked update_all_bartrac.py and found the current config defines `FML_FILE` and `NATRANS_FILE` as lists, while `main()` still expected scalar variables. I patched `main()` so it now:
+- selects the first existing `FML_FILE` path from the list
+- falls back to discovering FML files if none exist
+- builds `natrans_paths` from `NATRANS_FILE` list entries
+
+This ensures new file entry behavior is handled correctly without crashes.
+
+Made changes.

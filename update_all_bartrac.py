@@ -18,13 +18,24 @@ VENDOR_FOLDER = r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report"
 ORIENTO_FILES = [
     r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\1 X CATERPILLAR 6030 IN CKD FORM - LOAD10-13 - VARIOUS - 2 X LINK+ 1 X TRI AXLE - 2604DSI2802- BA3198 -DURBAN PORT TO MUTANDA MINING, DRC.xlsx",
     r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\1 X CATERPILLAR 6060 IN CKD FORM - LOAD 10-16 - VARIOUS - 6 X LINKS - 2604DSI2804- BA3188 -DURBAN PORT TO KAMOTO COPPER COMPANY.xlsx",
-    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO FRONTIER MINE)...xlsx",
-    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO KCC 16 June 2026.xlsx",
-    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT. - 1 X TRI-AXLE TO LOAD 1 x EG20 MOTOR GRADER -2603DSI2788 - BA2951-FREIGHTSTATIONS SA DURBAN TO KAMOA COPPER SA KOLWEZI DRC.xlsx"
+    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO-TRACKING REPORT -1 X TRI-AXLE-TO LOAD 1 x EG20 MOTOR GRADER -2603DSI2788 - BA2951-FREIGHTSTATIONS-SA DURBAN TO KAMOA COPPER SA KOLWEZI DRC.xlsx",
+    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO KCC 20 June 2026.xlsx",
+    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\1 X CATERPILLAR 6030 IN CKD FORM - LOAD10-13 - VARIOUS - 2 X LINK+ 1 X TRI AXLE - 2604DSI2802- BA3198 -DURBAN PORT TO MUTANDA MI.xlsx",
+    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\1 X CATERPILLAR 6060 IN CKD FORM - LOAD 10-16 - VARIOUS - 6 X LINKS - 2604DSI2804- BA3188 -DURBAN PORT TO KAMOTO COPPER COMPANY (1).xlsx",
+    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO KCC 17 June 2026.xlsx",
+    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT-TO FML (DURBAN PORT TO FRONTIER MINE).xlsx"
 ]
 
-NATRANS_FILE1 = r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6060 KOLWEZI BA3188.xlsx"
-NATRANS_FILE2 = r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6030 SAKANIA BA3159.xlsx"
+NATRANS_FILE = [
+    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6060 KOLWEZI BA3188.xlsx",
+    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6030 SAKANIA BA3159.xlsx"
+]
+
+FML_FILE = [
+    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT 6060.xlsx",
+    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6030 SAKANIA BA3159.xlsx",
+    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6030 SAKANIA BA3159.xlsx"
+]
 
 VANITO_FILE = r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\Vanito Tracking 2026 - FML DBN TO DRC.xlsx"
 
@@ -613,11 +624,18 @@ def main():
     dry_run = args.dry_run
     use_hardcoded = args.use_hardcoded
 
-    # Resolve paths
-    try:
+    # Resolve FML path from configured files or discover one in vendor-report
+    fml_path = None
+    if isinstance(FML_FILE, (list, tuple)):
+        for p in FML_FILE:
+            candidate = Path(p)
+            if candidate.exists():
+                fml_path = candidate
+                break
+    else:
         fml_path = Path(FML_FILE)
-    except NameError:
-        fml_path = None
+
+    if fml_path is None or not fml_path.exists():
         vendor_folder = Path(VENDOR_FOLDER)
         if vendor_folder.exists():
             fml_candidates = [p for p in vendor_folder.glob('*.xlsx') if 'FML' in p.name.upper() and not p.name.startswith('~$')]
@@ -628,7 +646,7 @@ def main():
                     fml_path = max(candidates, key=lambda p: p.stat().st_mtime)
                 except Exception:
                     fml_path = candidates[0]
-        if not fml_path:
+        if fml_path is None:
             fml_path = Path("")
 
     # Discover vendor files: prefer actual files in vendor-report over brittle hardcoded paths
@@ -653,7 +671,11 @@ def main():
         if not oriento_paths:
             oriento_paths = [Path(p) for p in ORIENTO_FILES]
 
-    natrans_paths = [Path(NATRANS_FILE1), Path(NATRANS_FILE2)]
+    natrans_paths = []
+    if isinstance(NATRANS_FILE, (list, tuple)):
+        natrans_paths = [Path(p) for p in NATRANS_FILE if Path(p).exists()]
+    else:
+        natrans_paths = [Path(NATRANS_FILE)]
     vanito_path = Path(VANITO_FILE)
     bartrac_folder = Path(BARTRAC_FOLDER)
     horse_json = Path(HORSE_OVERRIDE_JSON)
