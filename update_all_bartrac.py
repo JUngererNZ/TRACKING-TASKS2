@@ -74,6 +74,7 @@ def find_oriento_sheet(file_path):
                         cell_upper = str(cell).upper()
                         for kw in keywords:
                             if kw in cell_upper:
+                                print(f"  find_oriento_sheet: matched '{kw}' in sheet '{sheet}' (cell='{cell}')")
                                 return sheet
         return None
     except Exception as e:
@@ -136,12 +137,32 @@ def process_oriento_file(oriento_path):
                 status_col = i
 
     if truck_col is None:
-        print(f"❌ Could not find 'TRUCK NUMBER' column in ORIENTO sheet {sheet_name}")
+        print(f"❌ Could not find 'TRUCK'/'HORSE' column in ORIENTO sheet {sheet_name}")
         return truck_to_status
-    
+
+    # If both location and status columns are missing, attempt to infer nearby columns
     if location_col is None and status_col is None:
-        print(f"❌ Could not find 'CURRENT LOCATION' or 'CURRENT STATUS' column in ORIENTO sheet {sheet_name}")
-        return truck_to_status
+        max_cols = df_raw.shape[1]
+        # prefer column to the right of truck_col
+        cand_loc = truck_col + 1 if truck_col + 1 < max_cols else truck_col - 1
+        cand_stat = truck_col + 2 if truck_col + 2 < max_cols else truck_col + 1 if truck_col + 1 < max_cols else truck_col - 1
+        # validate candidates by checking sample values
+        sample_row = df_raw.iloc[header_idx + 1] if header_idx + 1 < len(df_raw) else None
+        used_fallback = False
+        if sample_row is not None:
+            val_loc = sample_row.iloc[cand_loc] if cand_loc is not None else None
+            val_stat = sample_row.iloc[cand_stat] if cand_stat is not None else None
+            if pd.notna(val_loc) and str(val_loc).strip() not in ['', 'nan']:
+                location_col = cand_loc
+                used_fallback = True
+            if pd.notna(val_stat) and str(val_stat).strip() not in ['', 'nan']:
+                status_col = cand_stat
+                used_fallback = True
+        if used_fallback:
+            print(f"⚠️ Using fallback columns for ORIENTO sheet {sheet_name}: truck_col={truck_col}, location_col={location_col}, status_col={status_col}")
+        else:
+            print(f"❌ Could not find 'CURRENT LOCATION' or 'CURRENT STATUS' column in ORIENTO sheet {sheet_name}")
+            return truck_to_status
 
     data_rows = df_raw.iloc[header_idx + 1:].copy()
     data_rows.columns = range(data_rows.shape[1])
@@ -587,8 +608,10 @@ def apply_status_map_to_bartrac(bartrac_path, status_map, overrides, dry_run=Fal
 def main():
     parser = argparse.ArgumentParser(description='Update BARTRAC files from vendor reports')
     parser.add_argument('--dry-run', action='store_true', help='Print intended updates without saving changes')
+    parser.add_argument('--use-hardcoded', action='store_true', help='Use hardcoded ORIENTO file list instead of discovering in vendor-report')
     args = parser.parse_args()
     dry_run = args.dry_run
+    use_hardcoded = args.use_hardcoded
 
     # Resolve paths
     try:
@@ -611,20 +634,24 @@ def main():
     # Discover vendor files: prefer actual files in vendor-report over brittle hardcoded paths
     vendor_folder = Path(VENDOR_FOLDER)
 
-    # ORIENTO / CATERPILLAR files: include any explicit paths that exist, then discover by name
-    oriento_paths = []
-    for p in ORIENTO_FILES:
-        pp = Path(p)
-        if pp.exists():
-            oriento_paths.append(pp)
-    if vendor_folder.exists():
-        discovered = sorted([p for p in vendor_folder.glob('*.xlsx') if 'ORIENTO' in p.name.upper() or 'CATERPILLAR' in p.name.upper()])
-        for p in discovered:
-            if p not in oriento_paths:
-                oriento_paths.append(p)
-    # Fallback: keep original list as Paths (may include non-existing paths)
-    if not oriento_paths:
+    # ORIENTO / CATERPILLAR files: support hardcoded or discovered modes
+    if use_hardcoded:
         oriento_paths = [Path(p) for p in ORIENTO_FILES]
+        print(f"ℹ️ Using hardcoded ORIENTO list ({len(oriento_paths)} entries)")
+    else:
+        oriento_paths = []
+        for p in ORIENTO_FILES:
+            pp = Path(p)
+            if pp.exists():
+                oriento_paths.append(pp)
+        if vendor_folder.exists():
+            discovered = sorted([p for p in vendor_folder.glob('*.xlsx') if 'ORIENTO' in p.name.upper() or 'CATERPILLAR' in p.name.upper()])
+            for p in discovered:
+                if p not in oriento_paths:
+                    oriento_paths.append(p)
+        # Fallback: keep original list as Paths (may include non-existing paths)
+        if not oriento_paths:
+            oriento_paths = [Path(p) for p in ORIENTO_FILES]
 
     natrans_paths = [Path(NATRANS_FILE1), Path(NATRANS_FILE2)]
     vanito_path = Path(VANITO_FILE)
