@@ -479,6 +479,10 @@ def apply_status_map_to_bartrac(bartrac_path, status_map, overrides, dry_run=Fal
         status_map: {truck_rego: status_string} dict from vendors
         overrides: {truck_rego: {status, colour}} dict from JSON
         dry_run: If True, print updates without saving
+
+    Returns:
+        Tuple[int, int] if processed successfully: (vendor_updates, override_updates)
+        None if file could not be processed.
     """
     bartrac_path = Path(bartrac_path)
     print(f"\n{'='*60}")
@@ -504,10 +508,10 @@ def apply_status_map_to_bartrac(bartrac_path, status_map, overrides, dry_run=Fal
                 sheet_name = found
             else:
                 print(f"❌ No known sheet found in {bartrac_path.name}")
-                return
+                return None
         except Exception as e:
             print(f"❌ Cannot open {bartrac_path.name}: {e}")
-            return
+            return None
     else:
         try:
             wb = load_workbook(bartrac_path)
@@ -518,10 +522,10 @@ def apply_status_map_to_bartrac(bartrac_path, status_map, overrides, dry_run=Fal
                         break
                 if sheet_name not in wb.sheetnames:
                     print(f"❌ Sheet '{sheet_name}' not found in {bartrac_path.name}")
-                    return
+                    return None
         except Exception as e:
             print(f"❌ Cannot open {bartrac_path.name}: {e}")
-            return
+            return None
 
     print(f"Using sheet: '{sheet_name}'")
 
@@ -547,7 +551,7 @@ def apply_status_map_to_bartrac(bartrac_path, status_map, overrides, dry_run=Fal
     
     if header_row_idx is None:
         print(f"❌ Could not find header row containing 'CLIENT PO'")
-        return
+        return None
 
     # Build column index
     col_index = {}
@@ -560,7 +564,7 @@ def apply_status_map_to_bartrac(bartrac_path, status_map, overrides, dry_run=Fal
     for col in required:
         if col not in col_index:
             print(f"❌ Column '{col}' not found in header row")
-            return
+            return None
 
     # Apply status map (vendor data)
     updated_count = 0
@@ -623,6 +627,8 @@ def apply_status_map_to_bartrac(bartrac_path, status_map, overrides, dry_run=Fal
     else:
         print(f"💾 Saving changes to: {bartrac_path}")
         wb.save(bartrac_path)
+
+    return updated_count, override_count
 
 def main():
     parser = argparse.ArgumentParser(description='Update BARTRAC files from vendor reports')
@@ -735,13 +741,26 @@ def main():
     print(f"{'='*60}")
 
     print(f"\nFound {len(bartrac_files)} BARTRAC file(s) to process.\n")
+    summary_rows = []
     for bartrac_file in bartrac_files:
         try:
-            apply_status_map_to_bartrac(bartrac_file, master_status, overrides, dry_run=dry_run)
+            result = apply_status_map_to_bartrac(bartrac_file, master_status, overrides, dry_run=dry_run)
+            if result is not None:
+                vendor_updates, override_updates = result
+                summary_rows.append((bartrac_file.name, vendor_updates, override_updates))
+            else:
+                summary_rows.append((bartrac_file.name, None, None))
         except Exception as e:
             print(f"❌ Failed to process {bartrac_file.name}: {e}")
+            summary_rows.append((bartrac_file.name, None, None))
 
     print(f"\n✅ All BARTRAC files processed.")
+    print("\nSummary of row changes per file:")
+    for filename, vendor_updates, override_updates in summary_rows:
+        if vendor_updates is None:
+            print(f"- {filename}: failed to process or no known sheet/header")
+        else:
+            print(f"- {filename}: vendor updates={vendor_updates}, manual overrides={override_updates}")
 
 if __name__ == "__main__":
     main()
