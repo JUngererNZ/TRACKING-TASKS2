@@ -276,3 +276,245 @@ A backup was created: BARTRAC - SURYA MINES 19-06-2026_backup_20260620_120802.xl
 No vendor rows required updates in that file, but the sheet was correctly found and saved.
 If you want, I can also add a final summary log of how many rows changed per file.
 
+If you want, I can also add a final summary log of how many rows changed per file.
+answer: yes
+
+Compacted conversation
+
+Checking update_all_bartrac.py so I can add a concise per-file summary log.
+
+I’ve found the update point. Now I’m adding return counts from the update function and a final summary block in main().
+
+✅ Added final summary logging to update_all_bartrac.py.
+
+What changed:
+
+apply_status_map_to_bartrac() now returns (vendor_updates, override_updates) when successful.
+main() collects those results per BARTRAC file.
+At the end, the script prints a concise summary:
+- <filename>: vendor updates=X, manual overrides=Y
+or - <filename>: failed to process or no known sheet/header
+You can run the script again to see the new summary output.
+
+
+If you want, I can also add a final summary log of how many rows changed per file.
+answer: yes
+
+Compacted conversation
+
+Checking update_all_bartrac.py so I can add a concise per-file summary log.
+
+I’ve found the update point. Now I’m adding return counts from the update function and a final summary block in main().
+
+✅ Added final summary logging to update_all_bartrac.py.
+
+What changed:
+
+apply_status_map_to_bartrac() now returns (vendor_updates, override_updates) when successful.
+main() collects those results per BARTRAC file.
+At the end, the script prints a concise summary:
+- <filename>: vendor updates=X, manual overrides=Y
+or - <filename>: failed to process or no known sheet/header
+You can run the script again to see the new summary output.
+
+Running the script without dry-run to apply updates now, including the SURYA file support.
+
+Ran terminal command: & c:/Users/Jason/Projects/TRACKING-TASKS2/.venv/Scripts/python.exe c:/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py
+
+Read [](file:///c%3A/Users/Jason/AppData/Roaming/Code/User/workspaceStorage/495dfd54afef53a628856d4ca04c7fee/GitHub.copilot-chat/chat-session-resources/d9e001c9-53dc-4994-b706-502db8f54866/call_nNJzY9tAVhbOh7TgEFj9bCvA__vscode-1781943701784/content.txt)
+
+✅ Success — the script ran for real and wrote updates to the BARTRAC files again.
+
+- `BARTRAC - SURYA MINES 19-06-2026.xlsx` is now supported and processed.
+- A backup was created: `BARTRAC - SURYA MINES 19-06-2026_backup_20260620_120802.xlsx`
+- No vendor rows required updates in that file, but the sheet was correctly found and saved.
+
+If you want, I can also add a final summary log of how many rows changed per file.
+
+Compacted conversationChecking update_all_bartrac.py so I can add a concise per-file summary log.
+
+Read [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py#1-1), lines 1 to 360
+
+Read [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py#360-360), lines 360 to 747
+
+I’ve found the update point. Now I’m adding return counts from the update function and a final summary block in `main()`.
+
+Replacing 153 lines with 159 lines in [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py)
+
+
+```
+
+```
+
+
+Replacing 9 lines with 22 lines in [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py)
+
+
+```
+
+```
+✅ Added final summary logging to update_all_bartrac.py.
+
+What changed:
+- `apply_status_map_to_bartrac()` now returns `(vendor_updates, override_updates)` when successful.
+- `main()` collects those results per BARTRAC file.
+- At the end, the script prints a concise summary:
+  - `- <filename>: vendor updates=X, manual overrides=Y`
+  - or `- <filename>: failed to process or no known sheet/header`
+
+You can run the script again to see the new summary output.
+
+Made changes.
+
+Compacted conversationChecking update_all_bartrac.py so I can add a concise per-file summary log.
+
+Read [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py#1-1), lines 1 to 360
+
+Read [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py#360-360), lines 360 to 747
+
+I’ve found the update point. Now I’m adding return counts from the update function and a final summary block in `main()`.
+
+Replacing 153 lines with 159 lines in [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py)
+
+
+```
+
+```
+
+
+Replacing 9 lines with 22 lines in [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py)
+
+
+```
+
+```
+✅ Added final summary logging to update_all_bartrac.py.
+
+What changed:
+- `apply_status_map_to_bartrac()` now returns `(vendor_updates, override_updates)` when successful.
+- `main()` collects those results per BARTRAC file.
+- At the end, the script prints a concise summary:
+  - `- <filename>: vendor updates=X, manual overrides=Y`
+  - or `- <filename>: failed to process or no known sheet/header`
+
+You can run the script again to see the new summary output.
+
+Made changes.
+
+Reviewing the current script and JSON structure so I can wire automatic vendor discovery from it.
+
+Read [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py#1-1), lines 1 to 420
+
+Read [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/directory_structure.json)
+
+I found the exact extension point. Now I’m wiring directory_structure.json into the vendor-file selection path and preserving fallback behavior.
+
+Replacing 45 lines with 91 lines in [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py)
+
+
+```
+
+```
+
+
+Replacing 19 lines with 17 lines in [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py)
+
+
+```
+
+```
+
+
+Replacing 7 lines with 21 lines in [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py)
+
+
+```
+
+```
+I’m verifying the updated `main()` block and the new JSON-driven vendor index logic for correctness.
+
+Read [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py#420-420), lines 420 to 760
+
+## ✅ Yes — the script can use directory_structure.json
+
+I’ve updated update_all_bartrac.py so it now:
+
+- loads directory_structure.json from the script folder
+- reads files by category:
+  - `ORIENTO_FILES`
+  - `FML_FILE`
+  - `NATRANS_FILE`
+  - `VANITO_FILE`
+- uses those paths automatically when available
+- still falls back to the old discovery behavior if the JSON is missing or empty
+
+### What this means
+- You no longer have to pre-edit the ORIENTO/FML/NATRANS/VANITO lists manually
+- The script will use the JSON-generated file list first
+- `--use-hardcoded` still works to force the existing hardcoded ORIENTO list if needed
+
+### Note
+Make sure the JSON categories match exactly:
+- `ORIENTO_FILES`
+- `FML_FILE`
+- `NATRANS_FILE`
+- `VANITO_FILE`
+
+If you want, I can also remove the old hardcoded lists entirely and make the JSON the single source of truth.
+
+Made changes.
+
+Checking references to the old hardcoded constants so I can remove them cleanly.
+
+Searched for regex `ORIENTO_FILES|NATRANS_FILE|FML_FILE|VANITO_FILE` (`**/update_all_bartrac.py`), 31 results
+
+I’m locating the exact code sections for the hardcoded constants and main path resolution logic.
+
+Read [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py#1-1), lines 1 to 110
+
+Reviewing the main vendor selection block to remove hardcoded list fallbacks safely.
+
+Read [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py#640-640), lines 640 to 770
+
+Removing old manual file list constants and tightening main vendor sourcing to JSON + smart discovery fallback.
+
+Replacing 99 lines with 56 lines in [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py)
+
+
+```
+
+```
+
+
+Searched for regex `FML_FILE|NATRANS_FILE|ORIENTO_FILES|VANITO_FILE|use_hardcoded` (`**/update_all_bartrac.py`), 18 results
+
+Read [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py#640-640), lines 640 to 730
+
+Updating the script to remove the hardcoded vendor lists and keep directory_structure.json as the primary source.
+
+Replacing 33 lines with 7 lines in [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py)
+
+Found the top block. I’m removing the obsolete constants one section at a time.
+
+Read [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py#8-8), lines 8 to 48
+
+Verifying the script no longer defines the outdated file lists or references the removed hardcoded settings.
+
+Searched for regex `ORIENTO_FILES\s*=|NATRANS_FILE\s*=|FML_FILE\s*=|VANITO_FILE\s*=` (`**/update_all_bartrac.py`), no results
+
+Read [](file:///c%3A/Users/Jason/Projects/TRACKING-TASKS2/update_all_bartrac.py#1-1), lines 1 to 35
+
+✅ Done.
+
+- update_all_bartrac.py no longer contains the old hardcoded vendor file lists.
+- directory_structure.json is now the primary source of truth for:
+  - `ORIENTO_FILES`
+  - `FML_FILE`
+  - `NATRANS_FILE`
+  - `VANITO_FILE`
+- The script still falls back to filename-based discovery only if the JSON is missing or empty.
+
+If you want, I can also update the README or add a small validation check that the JSON contains all expected categories before running.
+
+Made changes.
+

@@ -1,0 +1,105 @@
+{
+    "name": "vendor-report",
+    "type": "directory",
+    "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\vendor-report",
+    "children": [
+        {
+            "name": "2603DSI2788 .xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\vendor-report\\2603DSI2788 .xlsx",
+            "size_bytes": 197042,
+            "category": "ORIENTO_FILES"
+        },
+        {
+            "name": "2603DSI2788.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\vendor-report\\2603DSI2788.xlsx",
+            "size_bytes": 197046,
+            "category": "ORIENTO_FILES"
+        },
+        {
+            "name": "2604DSI2802- BA3198.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\vendor-report\\2604DSI2802- BA3198.xlsx",
+            "size_bytes": 27299,
+            "category": "ORIENTO_FILES"
+        },
+        {
+            "name": "2604DSI2802.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\vendor-report\\2604DSI2802.xlsx",
+            "size_bytes": 27323,
+            "category": "ORIENTO_FILES"
+        },
+        {
+            "name": "2604DSI2804- BA3188.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\vendor-report\\2604DSI2804- BA3188.xlsx",
+            "size_bytes": 28195,
+            "category": "ORIENTO_FILES"
+        },
+        {
+            "name": "2604DSI2804.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\vendor-report\\2604DSI2804.xlsx",
+            "size_bytes": 28263,
+            "category": "ORIENTO_FILES"
+        },
+        {
+            "name": "BA3189-2.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\vendor-report\\BA3189-2.xlsx",
+            "size_bytes": 198769,
+            "category": "ORIENTO_FILES"
+        },
+        {
+            "name": "BA3189.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\vendor-report\\BA3189.xlsx",
+            "size_bytes": 198740,
+            "category": "ORIENTO_FILES"
+        },
+        {
+            "name": "BA3195-3.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\vendor-report\\BA3195-3.xlsx",
+            "size_bytes": 197707,
+            "category": "ORIENTO_FILES"
+        },
+        {
+            "name": "BA3195.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\vendor-report\\BA3195.xlsx",
+            "size_bytes": 197698,
+            "category": "ORIENTO_FILES"
+        },
+        {
+            "name": "FML CAT 6060.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\vendor-report\\FML CAT 6060.xlsx",
+            "size_bytes": 16187,
+            "category": "FML_FILE"
+        },
+        {
+            "name": "FML CAT6030 SAKANIA BA3159.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\vendor-report\\FML CAT6030 SAKANIA BA3159.xlsx",
+            "size_bytes": 23585,
+            "category": "NATRANS_FILE"
+        },
+        {
+            "name": "FML CAT6060 KOLWEZI BA3188.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\vendor-report\\FML CAT6060 KOLWEZI BA3188.xlsx",
+            "size_bytes": 22338,
+            "category": "NATRANS_FILE"
+        },
+        {
+            "name": "Vanito Tracking 2026 - FML DBN TO DRC.xlsx",
+            "type": "file",
+            "path": "C:\\Users\\Jason\\Projects\\TRACKING-TASKS2\\vendor-report\\Vanito Tracking 2026 - FML DBN TO DRC.xlsx",
+            "size_bytes": 170409,
+            "category": "VANITO_FILE"
+        }
+    ]
+}

@@ -15,31 +15,9 @@ PINK_FILL = PatternFill(start_color="FFC0CB", end_color="FFC0CB", fill_type="sol
 BARTRAC_FOLDER = r"C:\Users\Jason\Projects\TRACKING-TASKS2\BARTRAC-TRACKING"
 VENDOR_FOLDER = r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report"
 
-ORIENTO_FILES = [
-    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\1 X CATERPILLAR 6030 IN CKD FORM - LOAD10-13 - VARIOUS - 2 X LINK+ 1 X TRI AXLE - 2604DSI2802- BA3198 -DURBAN PORT TO MUTANDA MINING, DRC.xlsx",
-    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\1 X CATERPILLAR 6060 IN CKD FORM - LOAD 10-16 - VARIOUS - 6 X LINKS - 2604DSI2804- BA3188 -DURBAN PORT TO KAMOTO COPPER COMPANY.xlsx",
-    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO-TRACKING REPORT -1 X TRI-AXLE-TO LOAD 1 x EG20 MOTOR GRADER -2603DSI2788 - BA2951-FREIGHTSTATIONS-SA DURBAN TO KAMOA COPPER SA KOLWEZI DRC.xlsx",
-    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO KCC 20 June 2026.xlsx",
-    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\1 X CATERPILLAR 6030 IN CKD FORM - LOAD10-13 - VARIOUS - 2 X LINK+ 1 X TRI AXLE - 2604DSI2802- BA3198 -DURBAN PORT TO MUTANDA MI.xlsx",
-    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\1 X CATERPILLAR 6060 IN CKD FORM - LOAD 10-16 - VARIOUS - 6 X LINKS - 2604DSI2804- BA3188 -DURBAN PORT TO KAMOTO COPPER COMPANY (1).xlsx",
-    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT TO FML (DURBAN PORT TO KCC 17 June 2026.xlsx",
-    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\ORIENTO TRACKING REPORT-TO FML (DURBAN PORT TO FRONTIER MINE).xlsx"
-]
-
-NATRANS_FILE = [
-    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6060 KOLWEZI BA3188.xlsx",
-    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6030 SAKANIA BA3159.xlsx"
-]
-
-FML_FILE = [
-    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT 6060.xlsx",
-    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6030 SAKANIA BA3159.xlsx",
-    r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\FML CAT6030 SAKANIA BA3159.xlsx"
-]
-
-VANITO_FILE = r"C:\Users\Jason\Projects\TRACKING-TASKS2\vendor-report\Vanito Tracking 2026 - FML DBN TO DRC.xlsx"
-
 HORSE_OVERRIDE_JSON = r"C:\Users\Jason\Projects\TRACKING-TASKS2\horse-registration.json"
+SCRIPT_DIR = Path(__file__).resolve().parent
+VENDOR_INDEX_JSON = SCRIPT_DIR / "directory_structure.json"
 
 # ------------------------------------------------------------------
 
@@ -51,6 +29,39 @@ def create_backup(file_path):
     shutil.copy2(file_path, backup_path)
     print(f"📁 Backup created: {backup_path}")
     return backup_path
+
+def load_vendor_index(index_path):
+    index_path = Path(index_path)
+    categories = {
+        "ORIENTO_FILES": [],
+        "FML_FILE": [],
+        "NATRANS_FILE": [],
+        "VANITO_FILE": []
+    }
+
+    if not index_path.exists():
+        return categories
+
+    try:
+        with open(index_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except Exception as e:
+        print(f"⚠️ Could not load vendor index {index_path}: {e}")
+        return categories
+
+    def traverse(node):
+        if isinstance(node, dict):
+            if node.get("type") == "file" and node.get("category") in categories and node.get("path"):
+                categories[node["category"]].append(Path(node["path"]))
+            for child in node.get("children", []):
+                traverse(child)
+        elif isinstance(node, list):
+            for child in node:
+                traverse(child)
+
+    traverse(data)
+    return categories
+
 
 def extract_component_keyword(comp_name):
     cleaned = comp_name.replace("CAT 6060", "").strip()
@@ -633,21 +644,21 @@ def apply_status_map_to_bartrac(bartrac_path, status_map, overrides, dry_run=Fal
 def main():
     parser = argparse.ArgumentParser(description='Update BARTRAC files from vendor reports')
     parser.add_argument('--dry-run', action='store_true', help='Print intended updates without saving changes')
-    parser.add_argument('--use-hardcoded', action='store_true', help='Use hardcoded ORIENTO file list instead of discovering in vendor-report')
     args = parser.parse_args()
     dry_run = args.dry_run
-    use_hardcoded = args.use_hardcoded
 
-    # Resolve FML path from configured files or discover one in vendor-report
+    vendor_index = load_vendor_index(VENDOR_INDEX_JSON)
+    has_vendor_index = any(vendor_index.values())
+    if has_vendor_index:
+        print(f"ℹ️ Loaded vendor file list from {VENDOR_INDEX_JSON}")
+
+    # Resolve FML path from directory index or vendor-report discovery
     fml_path = None
-    if isinstance(FML_FILE, (list, tuple)):
-        for p in FML_FILE:
-            candidate = Path(p)
-            if candidate.exists():
-                fml_path = candidate
+    if has_vendor_index and vendor_index["FML_FILE"]:
+        for p in vendor_index["FML_FILE"]:
+            if p.exists():
+                fml_path = p
                 break
-    else:
-        fml_path = Path(FML_FILE)
 
     if fml_path is None or not fml_path.exists():
         vendor_folder = Path(VENDOR_FOLDER)
@@ -666,31 +677,37 @@ def main():
     # Discover vendor files: prefer actual files in vendor-report over brittle hardcoded paths
     vendor_folder = Path(VENDOR_FOLDER)
 
-    # ORIENTO / CATERPILLAR files: support hardcoded or discovered modes
-    if use_hardcoded:
-        oriento_paths = [Path(p) for p in ORIENTO_FILES]
-        print(f"ℹ️ Using hardcoded ORIENTO list ({len(oriento_paths)} entries)")
-    else:
-        oriento_paths = []
-        for p in ORIENTO_FILES:
-            pp = Path(p)
-            if pp.exists():
-                oriento_paths.append(pp)
-        if vendor_folder.exists():
-            discovered = sorted([p for p in vendor_folder.glob('*.xlsx') if 'ORIENTO' in p.name.upper() or 'CATERPILLAR' in p.name.upper()])
-            for p in discovered:
-                if p not in oriento_paths:
-                    oriento_paths.append(p)
-        # Fallback: keep original list as Paths (may include non-existing paths)
-        if not oriento_paths:
-            oriento_paths = [Path(p) for p in ORIENTO_FILES]
+    # ORIENTO / CATERPILLAR files: use vendor index if available, otherwise discover by filename
+    oriento_paths = []
+    if has_vendor_index and vendor_index["ORIENTO_FILES"]:
+        oriento_paths = [p for p in vendor_index["ORIENTO_FILES"] if p.exists()]
+        print(f"ℹ️ Using ORIENTO files from {VENDOR_INDEX_JSON} ({len(oriento_paths)} entries)")
+    if not oriento_paths and vendor_folder.exists():
+        discovered = sorted([p for p in vendor_folder.glob('*.xlsx') if 'ORIENTO' in p.name.upper() or 'CATERPILLAR' in p.name.upper()])
+        for p in discovered:
+            if p not in oriento_paths:
+                oriento_paths.append(p)
 
     natrans_paths = []
-    if isinstance(NATRANS_FILE, (list, tuple)):
-        natrans_paths = [Path(p) for p in NATRANS_FILE if Path(p).exists()]
-    else:
-        natrans_paths = [Path(NATRANS_FILE)]
-    vanito_path = Path(VANITO_FILE)
+    if has_vendor_index and vendor_index["NATRANS_FILE"]:
+        natrans_paths = [p for p in vendor_index["NATRANS_FILE"] if p.exists()]
+        print(f"ℹ️ Using NATRANS files from {VENDOR_INDEX_JSON} ({len(natrans_paths)} entries)")
+    if not natrans_paths and vendor_folder.exists():
+        natrans_candidates = [p for p in vendor_folder.glob('*.xlsx') if 'FML' in p.name.upper() and ('KOLWEZI' in p.name.upper() or 'SAKANIA' in p.name.upper() or 'NATRANS' in p.name.upper())]
+        for p in natrans_candidates:
+            if p not in natrans_paths:
+                natrans_paths.append(p)
+
+    vanito_path = None
+    if has_vendor_index and vendor_index["VANITO_FILE"]:
+        for p in vendor_index["VANITO_FILE"]:
+            if p.exists():
+                vanito_path = p
+                break
+    if vanito_path is None and vendor_folder.exists():
+        vanito_candidates = [p for p in vendor_folder.glob('*.xlsx') if 'VANITO' in p.name.upper() or 'FML DBN TO DRC' in p.name.upper()]
+        if vanito_candidates:
+            vanito_path = vanito_candidates[0]
     bartrac_folder = Path(BARTRAC_FOLDER)
     horse_json = Path(HORSE_OVERRIDE_JSON)
 
