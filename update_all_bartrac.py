@@ -749,8 +749,13 @@ def main():
         status_from_natrans = process_natrans_file(natrans_path)
         master_status.update(status_from_natrans)
     
-    status_from_vanito = process_vanito_file(vanito_path)
-    master_status.update(status_from_vanito)
+    # Handle Vanito file — skip if not found
+    if vanito_path is not None and Path(vanito_path).exists():
+        status_from_vanito = process_vanito_file(vanito_path)
+        master_status.update(status_from_vanito)
+    else:
+        print("⚠️ Vanito file not found, skipping.")
+        status_from_vanito = {}
 
     print(f"\n📊 Master status map contains {len(master_status)} unique truck entries\n")
 
