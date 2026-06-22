@@ -68,11 +68,6 @@ def load_vendor_index(index_path):
     traverse(data)
     return categories
 
-
-def extract_component_keyword(comp_name):
-    cleaned = comp_name.replace("CAT 6060", "").strip()
-    return cleaned
-
 def get_sheet_name_for_bartrac(bartrac_path):
     filename = bartrac_path.name.lower()
     if "congo" in filename:
@@ -88,135 +83,115 @@ def get_sheet_name_for_bartrac(bartrac_path):
     else:
         return None
 
-def find_oriento_sheet(file_path):
-    try:
-        xl = pd.ExcelFile(file_path)
-        # broader keyword set to capture variations in ORIENTO/ Caterpillar sheets
-        keywords = ["TRUCK NUMBER", "TRUCK NO", "TRUCK", "HORSE", "HORSE REG", "HORSE REG NO", "HORSE REGISTRATION"]
-        for sheet in xl.sheet_names:
-            # read a larger sample area to catch headers that aren't in the very top rows
-            df_sample = pd.read_excel(file_path, sheet_name=sheet, header=None, nrows=100, dtype=str)
-            for _, row in df_sample.iterrows():
-                for cell in row.iloc[:40]:
-                    if pd.notna(cell):
-                        cell_upper = str(cell).upper()
-                        for kw in keywords:
-                            if kw in cell_upper:
-                                print(f"  find_oriento_sheet: matched '{kw}' in sheet '{sheet}' (cell='{cell}')")
-                                return sheet
-        return None
-    except Exception as e:
-        print(f"⚠️ Could not read sheets from {file_path}: {e}")
-        return None
-
+# ----- UPDATED: process_oriento_file now handles all sheets -----
 def process_oriento_file(oriento_path):
-    """Extract truck → status mapping from ORIENTO file.
+    """Extract truck → status mapping from ALL sheets in the ORIENTO file.
     Returns {truck_rego: status_string}."""
-    oriento_path = Path(oriento_path)
     truck_to_status = {}
-    
+    oriento_path = Path(oriento_path)
+
     if not oriento_path.exists():
         print(f"⚠️ ORIENTO file not found: {oriento_path}")
         return truck_to_status
 
-    sheet_name = find_oriento_sheet(oriento_path)
-    if sheet_name is None:
-        print(f"⚠️ Could not find sheet with 'TRUCK NUMBER' in {oriento_path.name}. Skipping.")
-        return truck_to_status
-
-    print(f"📖 Reading ORIENTO: {oriento_path.name} (sheet: {sheet_name})")
     try:
-        df_raw = pd.read_excel(oriento_path, sheet_name=sheet_name, header=None, dtype=str)
+        xl = pd.ExcelFile(oriento_path)
     except Exception as e:
-        print(f"⚠️ Could not read sheet '{sheet_name}': {e}")
+        print(f"⚠️ Could not read ORIENTO file {oriento_path}: {e}")
         return truck_to_status
 
-    # Find header row (look for TRUCK / HORSE keywords)
-    header_idx = None
-    header_keywords = ["TRUCK NUMBER", "TRUCK NO", "TRUCK", "HORSE", "HORSE REG", "HORSE REG NO"]
-    for idx, row in df_raw.iterrows():
-        for cell in row.iloc[:40]:
-            if pd.notna(cell):
-                cell_upper = str(cell).upper()
-                if any(kw in cell_upper for kw in header_keywords):
-                    header_idx = idx
-                    break
-        if header_idx is not None:
-            break
-    
-    if header_idx is None:
-        print(f"❌ Could not find header row in ORIENTO sheet {sheet_name}")
-        return truck_to_status
-
-    header_row = df_raw.iloc[header_idx]
-    truck_col = None
-    location_col = None
-    status_col = None
-    for i, val in enumerate(header_row):
-        if pd.notna(val):
-            val_str = str(val).strip().upper()
-            # truck/horse identification
-            if any(x in val_str for x in ["TRUCK NUMBER", "TRUCK NO", "TRUCK", "HORSE", "HORSE REG"]):
-                truck_col = i
-            # location/status identification (accept multiple variants used by vendor sheets)
-            if any(x in val_str for x in ["CURRENT LOCATION", "LOCATION", "DESTINATION", "LOADING PLACE", "SITE"]):
-                location_col = i
-            if any(x in val_str for x in ["CURRENT STATUS", "STATUS", "REMARKS", "COMMENT", "COMMENTS"]):
-                status_col = i
-
-    if truck_col is None:
-        print(f"❌ Could not find 'TRUCK'/'HORSE' column in ORIENTO sheet {sheet_name}")
-        return truck_to_status
-
-    # If both location and status columns are missing, attempt to infer nearby columns
-    if location_col is None and status_col is None:
-        max_cols = df_raw.shape[1]
-        # prefer column to the right of truck_col
-        cand_loc = truck_col + 1 if truck_col + 1 < max_cols else truck_col - 1
-        cand_stat = truck_col + 2 if truck_col + 2 < max_cols else truck_col + 1 if truck_col + 1 < max_cols else truck_col - 1
-        # validate candidates by checking sample values
-        sample_row = df_raw.iloc[header_idx + 1] if header_idx + 1 < len(df_raw) else None
-        used_fallback = False
-        if sample_row is not None:
-            val_loc = sample_row.iloc[cand_loc] if cand_loc is not None else None
-            val_stat = sample_row.iloc[cand_stat] if cand_stat is not None else None
-            if pd.notna(val_loc) and str(val_loc).strip() not in ['', 'nan']:
-                location_col = cand_loc
-                used_fallback = True
-            if pd.notna(val_stat) and str(val_stat).strip() not in ['', 'nan']:
-                status_col = cand_stat
-                used_fallback = True
-        if used_fallback:
-            print(f"⚠️ Using fallback columns for ORIENTO sheet {sheet_name}: truck_col={truck_col}, location_col={location_col}, status_col={status_col}")
-        else:
-            print(f"❌ Could not find 'CURRENT LOCATION' or 'CURRENT STATUS' column in ORIENTO sheet {sheet_name}")
-            return truck_to_status
-
-    data_rows = df_raw.iloc[header_idx + 1:].copy()
-    data_rows.columns = range(data_rows.shape[1])
-
-    for _, row in data_rows.iterrows():
-        truck = str(row.iloc[truck_col]).strip() if pd.notna(row.iloc[truck_col]) else ""
-        if not truck or truck == 'nan':
+    for sheet_name in xl.sheet_names:
+        print(f"📖 Reading ORIENTO sheet: '{sheet_name}'")
+        try:
+            df_raw = pd.read_excel(oriento_path, sheet_name=sheet_name, header=None, dtype=str)
+        except Exception as e:
+            print(f"⚠️ Could not read sheet '{sheet_name}': {e}")
             continue
 
-        location = str(row.iloc[location_col]).strip() if location_col is not None and pd.notna(row.iloc[location_col]) else ""
-        status = str(row.iloc[status_col]).strip() if status_col is not None and pd.notna(row.iloc[status_col]) else ""
+        # Find header row containing "TRUCK NUMBER" or similar
+        header_idx = None
+        header_keywords = ["TRUCK NUMBER", "TRUCK NO", "TRUCK", "HORSE", "HORSE REG", "HORSE REG NO"]
+        for idx, row in df_raw.iterrows():
+            for cell in row.iloc[:40]:
+                if pd.notna(cell):
+                    cell_upper = str(cell).upper()
+                    if any(kw in cell_upper for kw in header_keywords):
+                        header_idx = idx
+                        break
+            if header_idx is not None:
+                break
 
-        if location and status:
-            combined = f"{location} - {status}"
-        elif location:
-            combined = location
-        elif status:
-            combined = status
-        else:
+        if header_idx is None:
+            print(f"⚠️ Could not find header row in sheet '{sheet_name}'")
             continue
 
-        truck_to_status[truck] = combined
+        header_row = df_raw.iloc[header_idx]
+        truck_col = None
+        location_col = None
+        status_col = None
+
+        for i, val in enumerate(header_row):
+            if pd.notna(val):
+                val_str = str(val).strip().upper()
+                # Identify truck column
+                if any(x in val_str for x in ["TRUCK NUMBER", "TRUCK NO", "TRUCK", "HORSE", "HORSE REG"]):
+                    truck_col = i
+                # Identify location column
+                if any(x in val_str for x in ["CURRENT LOCATION", "LOCATION", "DESTINATION", "LOADING PLACE", "SITE"]):
+                    location_col = i
+                # Identify status column
+                if any(x in val_str for x in ["CURRENT STATUS", "STATUS", "REMARKS", "COMMENT", "COMMENTS"]):
+                    status_col = i
+
+        if truck_col is None:
+            print(f"⚠️ Could not find 'TRUCK'/'HORSE' column in sheet '{sheet_name}'")
+            continue
+
+        # Fallback if both location and status are missing
+        if location_col is None and status_col is None:
+            max_cols = df_raw.shape[1]
+            cand_loc = truck_col + 1 if truck_col + 1 < max_cols else truck_col - 1
+            cand_stat = truck_col + 2 if truck_col + 2 < max_cols else truck_col + 1 if truck_col + 1 < max_cols else truck_col - 1
+            sample_row = df_raw.iloc[header_idx + 1] if header_idx + 1 < len(df_raw) else None
+            used_fallback = False
+            if sample_row is not None:
+                if cand_loc is not None and pd.notna(sample_row.iloc[cand_loc]) and str(sample_row.iloc[cand_loc]).strip() not in ['', 'nan']:
+                    location_col = cand_loc
+                    used_fallback = True
+                if cand_stat is not None and pd.notna(sample_row.iloc[cand_stat]) and str(sample_row.iloc[cand_stat]).strip() not in ['', 'nan']:
+                    status_col = cand_stat
+                    used_fallback = True
+            if not used_fallback:
+                print(f"⚠️ Could not find location or status columns in sheet '{sheet_name}', skipping.")
+                continue
+
+        # Process data rows
+        data_rows = df_raw.iloc[header_idx + 1:].copy()
+        data_rows.columns = range(data_rows.shape[1])
+
+        for _, row in data_rows.iterrows():
+            truck = str(row.iloc[truck_col]).strip() if pd.notna(row.iloc[truck_col]) else ""
+            if not truck or truck == 'nan':
+                continue
+
+            location = str(row.iloc[location_col]).strip() if location_col is not None and pd.notna(row.iloc[location_col]) else ""
+            status = str(row.iloc[status_col]).strip() if status_col is not None and pd.notna(row.iloc[status_col]) else ""
+
+            if location and status:
+                combined = f"{location} - {status}"
+            elif location:
+                combined = location
+            elif status:
+                combined = status
+            else:
+                continue
+
+            truck_to_status[truck] = combined
 
     print(f"✅ ORIENTO: Found {len(truck_to_status)} truck entries")
     return truck_to_status
 
+# ----- The rest of the functions remain unchanged -----
 def process_fml_file(fml_path):
     """Extract truck → status mapping from FML file.
     Returns {truck_rego: status_string}."""
@@ -658,32 +633,30 @@ def main():
     if has_vendor_index:
         print(f"ℹ️ Loaded vendor file list from {VENDOR_INDEX_JSON}")
 
-    # Resolve FML path from directory index or vendor-report discovery
-    fml_path = None
-    if has_vendor_index and vendor_index["FML_FILE"]:
-        for p in vendor_index["FML_FILE"]:
-            if p.exists():
-                fml_path = p
-                break
-
-    if fml_path is None or not fml_path.exists():
-        vendor_folder = Path(VENDOR_FOLDER)
-        if vendor_folder.exists():
-            fml_candidates = [p for p in vendor_folder.glob('*.xlsx') if 'FML' in p.name.upper() and not p.name.startswith('~$')]
-            if fml_candidates:
-                cat_candidates = [p for p in fml_candidates if '6060' in p.name.upper() or 'CAT' in p.name.upper()]
-                candidates = cat_candidates if cat_candidates else fml_candidates
-                try:
-                    fml_path = max(candidates, key=lambda p: p.stat().st_mtime)
-                except Exception:
-                    fml_path = candidates[0]
-        if fml_path is None:
-            fml_path = Path("")
-
-    # Discover vendor files: prefer actual files in vendor-report over brittle hardcoded paths
+    # Vendor folder for discovery fallback
     vendor_folder = Path(VENDOR_FOLDER)
 
-    # ORIENTO / CATERPILLAR files: use vendor index if available, otherwise discover by filename
+    # ========== 1. FML files (as a list) ==========
+    fml_paths = []
+    if has_vendor_index and vendor_index["FML_FILE"]:
+        fml_paths = [p for p in vendor_index["FML_FILE"] if p.exists()]
+        print(f"ℹ️ Using FML files from {VENDOR_INDEX_JSON} ({len(fml_paths)} entries)")
+
+    if not fml_paths and vendor_folder.exists():
+        fml_candidates = [p for p in vendor_folder.glob('*.xlsx') 
+                          if 'FML' in p.name.upper() and not p.name.startswith('~$')]
+        if fml_candidates:
+            # Optional: filter to only those containing '6060' or 'CAT'
+            # cat_candidates = [p for p in fml_candidates if '6060' in p.name.upper() or 'CAT' in p.name.upper()]
+            # fml_paths = cat_candidates if cat_candidates else fml_candidates
+            fml_paths = fml_candidates
+
+    if not fml_paths:
+        print("ERROR: No FML files found.")
+        if not dry_run:
+            sys.exit(1)
+
+    # ========== 2. ORIENTO files (list) ==========
     oriento_paths = []
     if has_vendor_index and vendor_index["ORIENTO_FILES"]:
         oriento_paths = [p for p in vendor_index["ORIENTO_FILES"] if p.exists()]
@@ -694,6 +667,7 @@ def main():
             if p not in oriento_paths:
                 oriento_paths.append(p)
 
+    # ========== 3. NATRANS files (list) ==========
     natrans_paths = []
     if has_vendor_index and vendor_index["NATRANS_FILE"]:
         natrans_paths = [p for p in vendor_index["NATRANS_FILE"] if p.exists()]
@@ -704,26 +678,7 @@ def main():
             if p not in natrans_paths:
                 natrans_paths.append(p)
 
-# --- FML files: collect all matching files ---
-fml_paths = []
-if has_vendor_index and vendor_index["FML_FILE"]:
-    fml_paths = [p for p in vendor_index["FML_FILE"] if p.exists()]
-    print(f"ℹ️ Using FML files from {VENDOR_INDEX_JSON} ({len(fml_paths)} entries)")
-
-if not fml_paths and vendor_folder.exists():
-    fml_candidates = [p for p in vendor_folder.glob('*.xlsx') 
-                      if 'FML' in p.name.upper() and not p.name.startswith('~$')]
-    if fml_candidates:
-        # Optional: keep only those with '6060' or 'CAT' if you prefer
-        # cat_candidates = [p for p in fml_candidates if '6060' in p.name.upper() or 'CAT' in p.name.upper()]
-        # fml_candidates = cat_candidates if cat_candidates else fml_candidates
-        fml_paths = fml_candidates
-
-if not fml_paths:
-    print("ERROR: No FML files found.")
-    if not dry_run:
-        sys.exit(1)
-
+    # ========== 4. VANITO file (single) ==========
     vanito_path = None
     if has_vendor_index and vendor_index["VANITO_FILE"]:
         for p in vendor_index["VANITO_FILE"]:
@@ -734,22 +689,14 @@ if not fml_paths:
         vanito_candidates = [p for p in vendor_folder.glob('*.xlsx') if 'VANITO' in p.name.upper() or 'FML DBN TO DRC' in p.name.upper()]
         if vanito_candidates:
             vanito_path = vanito_candidates[0]
+
+    # ========== 5. BARTRAC folder ==========
     bartrac_folder = Path(BARTRAC_FOLDER)
     horse_json = Path(HORSE_OVERRIDE_JSON)
 
     if not bartrac_folder.exists():
         print(f"ERROR: BARTRAC folder does not exist: {bartrac_folder}")
         sys.exit(1)
-
-    if not fml_path.exists():
-        print(f"ERROR: FML file not found: {fml_path}")
-
-for fml_path in fml_paths:
-    status_from_fml = process_fml_file(fml_path)
-    master_status.update(status_from_fml)
-
-        if not dry_run:
-            sys.exit(1)
 
     bartrac_files = list(bartrac_folder.glob("*.xlsx"))
     bartrac_files = [f for f in bartrac_files if not f.name.startswith("~$")]
@@ -761,21 +708,25 @@ for fml_path in fml_paths:
     print(f"PHASE 1: Building master status map from vendors")
     print(f"{'='*60}\n")
 
-    # ========== PHASE 1: Build master status map (vendors read ONCE) ==========
+    # ========== PHASE 1: Build master status map ==========
     master_status = {}
-    
-    status_from_fml = process_fml_file(fml_path)
-    master_status.update(status_from_fml)
-    
+
+    # 1) FML files (all)
+    for fml_path in fml_paths:
+        status_from_fml = process_fml_file(fml_path)
+        master_status.update(status_from_fml)
+
+    # 2) ORIENTO files (updated to read all sheets)
     for oriento_path in oriento_paths:
         status_from_oriento = process_oriento_file(oriento_path)
         master_status.update(status_from_oriento)
-    
+
+    # 3) NATRANS files
     for natrans_path in natrans_paths:
         status_from_natrans = process_natrans_file(natrans_path)
         master_status.update(status_from_natrans)
-    
-    # Handle Vanito file — skip if not found
+
+    # 4) VANITO file (if found)
     if vanito_path is not None and Path(vanito_path).exists():
         status_from_vanito = process_vanito_file(vanito_path)
         master_status.update(status_from_vanito)
@@ -785,10 +736,10 @@ for fml_path in fml_paths:
 
     print(f"\n📊 Master status map contains {len(master_status)} unique truck entries\n")
 
-    # ========== PHASE 2: Load overrides (once) ==========
+    # ========== PHASE 2: Load overrides ==========
     overrides = load_horse_overrides(horse_json)
 
-    # ========== PHASE 3: Apply master map to each BARTRAC file ==========
+    # ========== PHASE 3: Apply to BARTRAC files ==========
     print(f"\n{'='*60}")
     print(f"PHASE 2: Applying status map to BARTRAC files")
     print(f"{'='*60}")
