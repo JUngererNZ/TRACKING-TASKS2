@@ -704,6 +704,26 @@ def main():
             if p not in natrans_paths:
                 natrans_paths.append(p)
 
+# --- FML files: collect all matching files ---
+fml_paths = []
+if has_vendor_index and vendor_index["FML_FILE"]:
+    fml_paths = [p for p in vendor_index["FML_FILE"] if p.exists()]
+    print(f"ℹ️ Using FML files from {VENDOR_INDEX_JSON} ({len(fml_paths)} entries)")
+
+if not fml_paths and vendor_folder.exists():
+    fml_candidates = [p for p in vendor_folder.glob('*.xlsx') 
+                      if 'FML' in p.name.upper() and not p.name.startswith('~$')]
+    if fml_candidates:
+        # Optional: keep only those with '6060' or 'CAT' if you prefer
+        # cat_candidates = [p for p in fml_candidates if '6060' in p.name.upper() or 'CAT' in p.name.upper()]
+        # fml_candidates = cat_candidates if cat_candidates else fml_candidates
+        fml_paths = fml_candidates
+
+if not fml_paths:
+    print("ERROR: No FML files found.")
+    if not dry_run:
+        sys.exit(1)
+
     vanito_path = None
     if has_vendor_index and vendor_index["VANITO_FILE"]:
         for p in vendor_index["VANITO_FILE"]:
@@ -723,6 +743,11 @@ def main():
 
     if not fml_path.exists():
         print(f"ERROR: FML file not found: {fml_path}")
+
+for fml_path in fml_paths:
+    status_from_fml = process_fml_file(fml_path)
+    master_status.update(status_from_fml)
+
         if not dry_run:
             sys.exit(1)
 
